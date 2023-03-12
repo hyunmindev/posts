@@ -3,7 +3,7 @@ import '@picocss/pico/css/pico.slim.min.css';
 import { Analytics } from '@vercel/analytics/react';
 import { ReactNode } from 'react';
 
-import StyledComponentsRegistry from '@/app/components/StyledComponentRegistery';
+import StyledComponentsProvider from '@/app/components/StyledComponentRegistery';
 
 interface Props {
   children: ReactNode;
@@ -18,7 +18,7 @@ function RootLayout({ children }: Props) {
   return (
     <html lang="ko">
       <body>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <StyledComponentsProvider>{children}</StyledComponentsProvider>
         <Analytics />
       </body>
     </html>

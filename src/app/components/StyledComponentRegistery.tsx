@@ -8,7 +8,7 @@ interface Props {
   children: ReactNode;
 }
 
-function StyledComponentsRegistry({ children }: Props) {
+function StyledComponentsProvider({ children }: Props) {
   const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet());
 
   useServerInsertedHTML(() => {
@@ -29,4 +29,4 @@ function StyledComponentsRegistry({ children }: Props) {
   );
 }
 
-export default StyledComponentsRegistry;
+export default StyledComponentsProvider;

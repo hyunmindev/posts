@@ -15,9 +15,9 @@
   "dependencies": {
     "@picocss/pico": "^1.5.7",
     "@vercel/analytics": "^0.1.11",
-    "next": "13.2.3",
+    "next": "^13.2.4",
     "next-seo": "^5.15.0",
-    "next-sitemap": "^4.0.2",
+    "next-sitemap": "^4.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "styled-components": "^5.3.8"
@@ -48,7 +48,7 @@
     "stylelint-config-standard-scss": "^7.0.1"
   },
   "devDependencies": {
-    "@types/node": "^18.14.6",
+    "@types/node": "^18.15.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/styled-components": "^5.1.26",
