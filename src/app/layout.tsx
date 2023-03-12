@@ -1,8 +1,8 @@
 import '@picocss/pico/css/pico.slim.min.css';
 
+import { Analytics } from '@vercel/analytics/react';
 import { ReactNode } from 'react';
 
-import AnalyticsWrapper from '@/app/components/AnalyticsWrapper';
 import StyledComponentsRegistry from '@/app/components/StyledComponentRegistery';
 
 interface Props {
@@ -19,7 +19,7 @@ function RootLayout({ children }: Props) {
     <html lang="ko">
       <body>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-        <AnalyticsWrapper />
+        <Analytics />
       </body>
     </html>
   );
