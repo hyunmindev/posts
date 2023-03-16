@@ -30,6 +30,11 @@
     "typescript-sort-keys/string-enum": "error",
 
     "react/react-in-jsx-scope": "off",
-    "react/jsx-sort-props": "error"
+    "react/jsx-sort-props": "error",
+
+    "import/prefer-default-export": "off",
+
+    "no-param-reassign": ["error", { "props": false }],
+    "no-console": "error"
   }
 }

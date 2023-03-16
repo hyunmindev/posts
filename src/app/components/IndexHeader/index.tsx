@@ -1,9 +1,18 @@
+import Logo from '@/app/components/Logo';
+import { join } from '@/utils';
+
 import styles from './index.module.scss';
 
 function IndexHeader() {
   return (
-    <header className={styles.header}>
-      <a href="/">Hyunmin Jung</a>
+    <header className={join(styles.header, 'container')}>
+      <nav>
+        <ul>
+          <li>
+            <Logo />
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }

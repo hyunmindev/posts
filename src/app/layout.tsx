@@ -1,6 +1,4 @@
-import '@/styles/reset.scss';
-import '@picocss/pico/css/pico.slim.min.css';
-import '@/styles/global.scss';
+import '@/styles/index.scss';
 
 import { Analytics } from '@vercel/analytics/react';
 import { ReactNode } from 'react';
@@ -19,7 +17,10 @@ export const metadata = {
 
 function RootLayout({ children }: Props) {
   return (
-    <html lang="ko">
+    <html
+      data-theme="dark"
+      lang="ko"
+    >
       <body>
         <StyledComponentsProvider>{children}</StyledComponentsProvider>
         <Analytics />
