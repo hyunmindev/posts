@@ -1,4 +1,5 @@
 import camelcaseKeys from 'camelcase-keys';
+import dayjs from 'dayjs';
 
 import { notion } from '@/configs/notion';
 import { POST_NOTION_DATABASE_ID } from '@/constants';
@@ -9,17 +10,18 @@ const processPost = (result: any): Post => {
     result,
     { deep: true }
   );
+  const { author, category, description, slug, tags, title } = properties;
   return {
-    author: properties.author.people[0]?.name ?? null,
-    category: properties.category.select?.name ?? null,
-    cover: cover?.external?.url ?? null,
-    createdTime: new Date(createdTime),
-    description: properties.description.richText[0]?.plainText ?? null,
+    author: author.people[0]?.name ?? null,
+    category: category.select.name,
+    cover: cover?.external.url ?? null,
+    createdTime: dayjs(createdTime),
+    description: description.richText[0]?.plainText ?? null,
     id,
-    lastEditedTime: new Date(lastEditedTime),
-    slug: properties.slug.richText[0]?.plainText ?? null,
-    tags: properties.tags.multiSelect.map((tag: { name: string }) => tag.name),
-    title: properties.title.title[0]?.plainText ?? null,
+    lastEditedTime: dayjs(lastEditedTime),
+    slug: slug.richText[0].plainText,
+    tags: tags.multiSelect.map((tag: { name: string }) => tag.name),
+    title: title.title[0].plainText,
   };
 };
 
@@ -35,7 +37,5 @@ export const getPosts = async (): Promise<Post[]> => {
       },
       sorts: [{ direction: 'ascending', timestamp: 'created_time' }],
     })
-  ).results
-    .map(processPost)
-    .filter(Boolean);
+  ).results.map(processPost);
 };

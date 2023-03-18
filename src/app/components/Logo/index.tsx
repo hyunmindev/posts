@@ -9,11 +9,11 @@ function Logo() {
       className={styles.logo}
       href="/"
     >
-      <p className={join(styles.name, firaMono.className)}>
+      <h1 className={join(styles.name, firaMono.className)}>
         Hyunmin
         <br />
         Jung
-      </p>
+      </h1>
       <p className={join(styles.job, firaMono.className)}>
         Front-end Developer
       </p>

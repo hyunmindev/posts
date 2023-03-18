@@ -1,11 +1,13 @@
+import { Dayjs } from 'dayjs';
+
 export interface Post {
-  author: string;
+  author?: string;
   category: string;
-  cover: string;
-  createdTime: Date;
-  description: string;
+  cover?: string;
+  createdTime: Dayjs;
+  description?: string;
   id: number;
-  lastEditedTime: Date;
+  lastEditedTime: Dayjs;
   slug: string;
   tags: string[];
   title: string;
