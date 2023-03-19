@@ -15,7 +15,7 @@ function Logo() {
         Jung
       </h1>
       <p className={join(styles.job, firaMono.className)}>
-        Front-end Developer
+        front-end Developer
       </p>
     </a>
   );

@@ -1,7 +1,14 @@
 .header {
   display: flex;
+  padding-top: 3rem;
+  padding-bottom: 1rem;
 
-  li {
-    list-style-type: none;
+  ul {
+    margin: 0;
+
+    li {
+      margin: 0;
+      list-style-type: none;
+    }
   }
 }

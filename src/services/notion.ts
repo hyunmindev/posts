@@ -1,9 +1,11 @@
+import 'server-only';
+
 import camelcaseKeys from 'camelcase-keys';
 import dayjs from 'dayjs';
 
 import { notion } from '@/configs/notion';
 import { POST_NOTION_DATABASE_ID } from '@/constants';
-import { Post } from '@/types/post';
+import { Database, Post } from '@/types/notion';
 
 const processPost = (result: any): Post => {
   const { cover, createdTime, id, lastEditedTime, properties } = camelcaseKeys(
@@ -38,4 +40,25 @@ export const getPosts = async (): Promise<Post[]> => {
       sorts: [{ direction: 'ascending', timestamp: 'created_time' }],
     })
   ).results.map(processPost);
+};
+
+export const getDatabase = async (): Promise<Database> => {
+  const { properties } = await notion.databases.retrieve({
+    database_id: POST_NOTION_DATABASE_ID,
+  });
+  const categories: { [key: string]: { color: string } } =
+    // @ts-ignore
+    properties.category.select.options.reduce(
+      // @ts-ignore
+      (acc, { color, name }) => ({ ...acc, [name]: { color } }),
+      {}
+    );
+  const tags: { [key: string]: { color: string } } =
+    // @ts-ignore
+    properties.tags.multi_select.options.reduce(
+      // @ts-ignore
+      (acc, { color, name }) => ({ ...acc, [name]: { color } }),
+      {}
+    );
+  return { categories, tags };
 };

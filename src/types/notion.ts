@@ -12,3 +12,8 @@ export interface Post {
   tags: string[];
   title: string;
 }
+
+export interface Database {
+  categories: { [key: string]: { color: string } };
+  tags: { [key: string]: { color: string } };
+}

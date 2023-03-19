@@ -1,25 +1,45 @@
 import Link from 'next/link';
 
-import { getPosts } from '@/services/post';
+import { firaMono } from '@/constants/font';
+import { getDatabase, getPosts } from '@/services/notion';
+import categoryStyles from '@/styles/category.module.scss';
+import { join } from '@/utils';
 
 import styles from './index.module.scss';
 
 async function PostList() {
-  const posts = await getPosts();
+  const [posts, database] = await Promise.all([getPosts(), getDatabase()]);
+
   return (
     <ul className={styles['post-list']}>
-      {posts.map(({ category, createdTime, slug, title }) => (
-        <li
-          key={slug}
-          className={styles.post}
-        >
-          <Link href={`/posts/${slug}`}>
-            <p className="category">{category}</p>
-            <p className="created-time">{createdTime.format('MMMM D, YYYY')}</p>
-            <h2 className="title">{title}</h2>
-          </Link>
-        </li>
-      ))}
+      {posts.map(({ category, createdTime, slug, title }) => {
+        const { color } = database.categories[category] as { color: string };
+        return (
+          <li
+            key={slug}
+            className={styles.post}
+          >
+            <Link href={`/posts/${slug}`}>
+              <p
+                className={join(
+                  categoryStyles.default,
+                  categoryStyles[color],
+                  firaMono.className
+                )}
+              >
+                {category}
+              </p>
+              <time
+                className={firaMono.className}
+                dateTime={createdTime.format('YYYY-MM-DD')}
+              >
+                {createdTime.format('MMMM D, YYYY')}
+              </time>
+              <h2 className={firaMono.className}>{title}</h2>
+            </Link>
+          </li>
+        );
+      })}
     </ul>
   );
 }

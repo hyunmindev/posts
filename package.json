@@ -24,6 +24,7 @@
     "notion-to-md": "^2.5.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "server-only": "^0.0.1",
     "styled-components": "^5.3.8"
   },
   "optionalDependencies": {
