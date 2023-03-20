@@ -2,8 +2,16 @@ import 'server-only';
 
 import camelcaseKeys from 'camelcase-keys';
 import dayjs from 'dayjs';
+import rehypePrism from 'rehype-prism';
+import rehypeRaw from 'rehype-raw';
+import rehypeSlug from 'rehype-slug';
+import rehypeStringify from 'rehype-stringify';
+import { remark } from 'remark';
+import remarkGfm from 'remark-gfm';
+import remarkRehype from 'remark-rehype';
+import remarkToc from 'remark-toc';
 
-import { notion } from '@/configs/notion';
+import { n2m, notion } from '@/configs/notion';
 import { POST_NOTION_DATABASE_ID } from '@/constants';
 import { Database, Post } from '@/types/notion';
 
@@ -40,6 +48,30 @@ export const getPosts = async (): Promise<Post[]> => {
       sorts: [{ direction: 'ascending', timestamp: 'created_time' }],
     })
   ).results.map(processPost);
+};
+
+export const getPost = async (slug: string): Promise<Post> => {
+  const { results } = await notion.databases.query({
+    database_id: POST_NOTION_DATABASE_ID,
+    filter: { and: [{ property: 'slug', rich_text: { equals: slug } }] },
+  });
+  const [response] = results;
+  if (!response) {
+    throw new Error('Notion Error');
+  }
+  const blocks = await n2m.pageToMarkdown(response.id);
+  const rawPost = n2m.toMarkdownString(blocks);
+  const { value } = await remark()
+    .use(remarkToc, { heading: 'toc' })
+    .use(remarkGfm)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypePrism)
+    .use(rehypeRaw)
+    .use(rehypeSlug)
+    // .use(process.env.NODE_ENV === 'production' ? rehypeImage : () => undefined)
+    .use(rehypeStringify)
+    .process(rawPost);
+  return { content: value.toString(), ...processPost(response) };
 };
 
 export const getDatabase = async (): Promise<Database> => {
