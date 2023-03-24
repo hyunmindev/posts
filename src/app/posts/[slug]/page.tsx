@@ -1,7 +1,11 @@
 import sanitizeHtml from 'sanitize-html';
 
-import { firaMono } from '@/constants/font';
+import { firaMono, nanumGothicCoding } from '@/constants/font';
 import { getPost } from '@/services/notion';
+import { join } from '@/utils';
+
+import PostHeader from './components/PostHeader';
+import styles from './page.module.scss';
 
 interface Props {
   params: {
@@ -14,11 +18,22 @@ async function Post({ params }: Props) {
   const { content = '', title } = post;
 
   return (
-    <main className="container">
-      <h1 className={firaMono.className}>{title}</h1>
-      {/* eslint-disable-next-line react/no-danger */}
-      <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(content) }} />
-    </main>
+    <>
+      <PostHeader />
+      <main className="container">
+        <article
+          className={join(
+            styles.post,
+            firaMono.variable,
+            nanumGothicCoding.variable
+          )}
+        >
+          <h1 className={styles.title}>{title}</h1>
+          {/* eslint-disable-next-line react/no-danger */}
+          <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(content) }} />
+        </article>
+      </main>
+    </>
   );
 }
 
