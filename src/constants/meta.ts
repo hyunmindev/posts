@@ -1,4 +1,6 @@
 export const NAME = 'Hyunmin Jung';
+export const EMAIL = 'jung@hyunmin.dev';
+export const BLOG_URL = 'https://blog.hyunmin.dev';
 export const BLOG_TITLE = 'Hyunmin Jung';
 export const BLOG_DESCRIPTION =
   '프론트엔드 개발자 정현민의 기술 블로그입니다.' +
