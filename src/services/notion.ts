@@ -4,16 +4,15 @@ import camelcaseKeys from 'camelcase-keys';
 import dayjs from 'dayjs';
 import rehypePrism from 'rehype-prism';
 import rehypeRaw from 'rehype-raw';
-import rehypeSlug from 'rehype-slug';
 import rehypeStringify from 'rehype-stringify';
 import { remark } from 'remark';
 import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
-import remarkToc from 'remark-toc';
 
 import { n2m, notion } from '@/configs/notion';
 import { POST_NOTION_DATABASE_ID } from '@/constants';
-import { Database, Post } from '@/types/notion';
+import { Database, Post, TOC } from '@/types/notion';
+import { rehypeTOC } from '@/utils/plugins';
 
 const processPost = (result: any): Post => {
   const { cover, createdTime, id, lastEditedTime, properties } = camelcaseKeys(
@@ -61,17 +60,19 @@ export const getPost = async (slug: string): Promise<Post> => {
   }
   const blocks = await n2m.pageToMarkdown(response.id);
   const rawPost = n2m.toMarkdownString(blocks);
-  const { value } = await remark()
-    .use(remarkToc, { heading: 'toc' })
+  const { data, value } = await remark()
     .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypePrism)
     .use(rehypeRaw)
-    .use(rehypeSlug)
-    // .use(process.env.NODE_ENV === 'production' ? rehypeImage : () => undefined)
+    .use(rehypeTOC)
     .use(rehypeStringify)
     .process(rawPost);
-  return { content: value.toString(), ...processPost(response) };
+  return {
+    content: value.toString(),
+    toc: data.toc as TOC[],
+    ...processPost(response),
+  };
 };
 
 export const getDatabase = async (): Promise<Database> => {

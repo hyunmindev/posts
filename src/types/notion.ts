@@ -12,9 +12,16 @@ export interface Post {
   slug: string;
   tags: string[];
   title: string;
+  toc?: TOC[];
 }
 
 export interface Database {
   categories: { [key: string]: { color: string } };
   tags: { [key: string]: { color: string } };
+}
+
+export interface TOC {
+  id: string;
+  tagName: string;
+  text: string;
 }

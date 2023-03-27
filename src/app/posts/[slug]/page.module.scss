@@ -1,10 +1,18 @@
+@use '../../../styles/mixins';
+
 .post {
+  position: relative;
   max-width: 768px;
   margin: auto;
-}
 
-.title {
-  font-family: var(--font-family-fira-mono)
-    var(--font-family-nanum-gothic-coding);
-  font-style: normal;
+  p {
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.003em;
+
+    @include mixins.breakpoint(sm) {
+      font-size: 22px;
+      line-height: 34px;
+    }
+  }
 }
