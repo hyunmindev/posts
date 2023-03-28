@@ -1,5 +1,5 @@
 import { firaMono, nanumGothic } from '@/constants/font';
-import { getPost } from '@/services/notion';
+import { getPost, getPosts } from '@/services/notion';
 import { join } from '@/utils';
 
 import PostHeader from './components/PostHeader';
@@ -10,6 +10,10 @@ interface Props {
   params: {
     slug: string;
   };
+}
+
+export async function generateStaticParams() {
+  return (await getPosts()).map(({ slug }) => ({ slug }));
 }
 
 async function Post({ params }: Props) {
@@ -24,6 +28,7 @@ async function Post({ params }: Props) {
           <TableOfContents toc={toc} />
           <h1 className={firaMono.className}>{title}</h1>
           <p>{description}</p>
+          {/* eslint-disable-next-line react/no-danger */}
           <div dangerouslySetInnerHTML={{ __html: content }} />
         </article>
       </main>

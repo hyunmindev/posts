@@ -2,6 +2,7 @@ import 'server-only';
 
 import camelcaseKeys from 'camelcase-keys';
 import dayjs from 'dayjs';
+import { cache } from 'react';
 import rehypePrism from 'rehype-prism';
 import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
@@ -34,7 +35,7 @@ const processPost = (result: any): Post => {
   };
 };
 
-export const getPosts = async (): Promise<Post[]> => {
+export const getPosts = cache(async (): Promise<Post[]> => {
   return (
     await notion.databases.query({
       database_id: POST_NOTION_DATABASE_ID,
@@ -47,9 +48,9 @@ export const getPosts = async (): Promise<Post[]> => {
       sorts: [{ direction: 'ascending', timestamp: 'created_time' }],
     })
   ).results.map(processPost);
-};
+});
 
-export const getPost = async (slug: string): Promise<Post> => {
+export const getPost = cache(async (slug: string): Promise<Post> => {
   const { results } = await notion.databases.query({
     database_id: POST_NOTION_DATABASE_ID,
     filter: { and: [{ property: 'slug', rich_text: { equals: slug } }] },
@@ -73,9 +74,9 @@ export const getPost = async (slug: string): Promise<Post> => {
     toc: data.toc as TOC[],
     ...processPost(response),
   };
-};
+});
 
-export const getDatabase = async (): Promise<Database> => {
+export const getDatabase = cache(async (): Promise<Database> => {
   const { properties } = await notion.databases.retrieve({
     database_id: POST_NOTION_DATABASE_ID,
   });
@@ -94,4 +95,4 @@ export const getDatabase = async (): Promise<Database> => {
       {}
     );
   return { categories, tags };
-};
+});
