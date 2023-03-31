@@ -3,12 +3,12 @@
 .container {
   position: absolute;
   top: 0;
-  right: -152px;
+  right: -181px;
   display: none;
-  width: 128px;
+  width: 159px;
   height: 100%;
 
-  @include mixins.breakpoint(lg) {
+  @include mixins.breakpoint(xl) {
     display: block;
   }
 }
@@ -32,15 +32,13 @@
     padding: 0;
     margin: 0;
     font-size: 0.8rem;
-    line-height: 1.4rem;
-    list-style-type: none;
+    line-height: 1.6rem;
 
     a {
       color: #999;
 
       &:hover {
         color: #eee;
-        text-decoration: none;
         transition-duration: 0.2s;
       }
     }

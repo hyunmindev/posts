@@ -5,10 +5,7 @@ import styles from './index.module.scss';
 
 function Logo() {
   return (
-    <a
-      className={styles.logo}
-      href="/"
-    >
+    <a href="/">
       <h1 className={join(styles.name, firaMono.className)}>
         Hyunmin
         <br />

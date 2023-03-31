@@ -24,7 +24,7 @@ function RootLayout({ children }: Props) {
     >
       <body>
         <StyledComponentsProvider>{children}</StyledComponentsProvider>
-        <Analytics />
+        <Analytics debug={false} />
         <GlobalFooter />
       </body>
     </html>

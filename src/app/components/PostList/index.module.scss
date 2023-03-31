@@ -10,7 +10,6 @@
   width: 33.33%;
   height: 14rem;
   margin: 0;
-  list-style-type: none;
   background-color: var(--background-color);
   outline: 0.8px solid #a2a3a9;
   transition: transform 0.1s ease-in-out;
@@ -50,10 +49,6 @@
     flex-direction: column;
     height: 100%;
     padding: 0.4rem;
-
-    &:hover {
-      text-decoration: none;
-    }
 
     p {
       margin: 0.2rem;

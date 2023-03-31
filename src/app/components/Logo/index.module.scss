@@ -1,16 +1,5 @@
 @use '../../../styles/mixins';
 
-.logo {
-  &:active {
-    background: none;
-  }
-
-  &:hover {
-    text-decoration: none;
-    background: none;
-  }
-}
-
 .name {
   margin-bottom: 1.5rem;
   font-size: 3rem;
