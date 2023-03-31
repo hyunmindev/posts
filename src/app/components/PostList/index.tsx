@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import { firaMono } from '@/constants/font';
 import { getDatabase, getPosts } from '@/services/notion';
 import categoryStyles from '@/styles/category.module.scss';
+import { firaMono } from '@/styles/font';
 import { join } from '@/utils';
 
 import styles from './index.module.scss';

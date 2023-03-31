@@ -7,6 +7,7 @@ import styles from './index.module.scss';
 interface Props {
   toc: TOC[];
 }
+
 function TableOfContents({ toc }: Props) {
   return (
     <div className={styles.container}>

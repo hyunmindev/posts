@@ -1,5 +1,5 @@
-import { firaMono } from '@/constants/font';
 import { NAME } from '@/constants/meta';
+import { firaMono } from '@/styles/font';
 import { join } from '@/utils';
 
 import styles from './index.module.scss';

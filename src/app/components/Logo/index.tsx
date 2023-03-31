@@ -1,4 +1,4 @@
-import { firaMono } from '@/constants/font';
+import { firaMono } from '@/styles/font';
 import { join } from '@/utils';
 
 import styles from './index.module.scss';

@@ -1,5 +1,5 @@
-import { firaMono, nanumGothic } from '@/constants/font';
 import { getPost, getPosts } from '@/services/notion';
+import { firaMono, nanumGothic } from '@/styles/font';
 import { join } from '@/utils';
 
 import PostHeader from './components/PostHeader';
