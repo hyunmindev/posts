@@ -12,23 +12,24 @@ interface Props {
 }
 
 function TableOfContents({ toc }: Props) {
+  const [visibleIDs, setVisibleIDs] = useState<string[]>([]);
   const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
 
-  const [visibleIDs, setVisibleIDs] = useState<string[]>([]);
-
+  /* h2, h3, h4 io */
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const visibleEntries = entries
-        .filter(({ intersectionRatio }) => intersectionRatio === 1)
+        .filter(({ intersectionRatio }) => intersectionRatio > 0)
         .map(({ target }) => target.id);
       const hiddenEntries = entries
-        .filter(({ intersectionRatio }) => intersectionRatio !== 1)
+        .filter(({ intersectionRatio }) => intersectionRatio === 0)
         .map(({ target }) => target.id);
       setVisibleIDs((prevState) => {
-        const set = new Set(prevState);
-        visibleEntries.forEach((id) => set.add(id));
-        hiddenEntries.forEach((id) => set.delete(id));
-        return Array.from(set);
+        return [
+          ...prevState
+            .filter((id) => !hiddenEntries.includes(id))
+            .concat(visibleEntries),
+        ];
       });
     });
     const sections = document.querySelectorAll('h2, h3, h4');
@@ -36,18 +37,32 @@ function TableOfContents({ toc }: Props) {
     return () => observer.disconnect();
   }, []);
 
+  /* h1 io */
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry!.isIntersecting) {
+        setVisibleIDs([]);
+        setCurrentSectionIndex(0);
+      }
+    });
+    const section = document.querySelector('h1')!;
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     if (visibleIDs.length !== 0) {
-      setCurrentSectionIndex(
-        toc.findIndex(({ id }) => visibleIDs[visibleIDs.length - 1] === id)
-      );
+      setCurrentSectionIndex(toc.findIndex(({ id }) => visibleIDs[0] === id));
     }
   }, [JSON.stringify(visibleIDs)]);
 
   useHashEffect((hash) => {
+    if (hash === '') {
+      return;
+    }
     setTimeout(
       () => setCurrentSectionIndex(toc.findIndex(({ id }) => hash === id)),
-      20
+      25
     );
   });
 
