@@ -1,15 +1,10 @@
+import PostHeader from '@/app/posts/[slug]/components/PostHeader';
+import TableOfContents from '@/app/posts/[slug]/components/TableOfContents';
+import styles from '@/app/posts/[slug]/page.module.scss';
 import { getPost, getPosts } from '@/services/notion';
-import { firaMono, nanumGothic } from '@/styles/font';
-import { join } from '@/utils';
-
-import PostHeader from './components/PostHeader';
-import TableOfContents from './components/TableOfContents';
-import styles from './page.module.scss';
 
 interface Props {
-  params: {
-    slug: string;
-  };
+  params: { slug: string };
 }
 
 export async function generateStaticParams() {
@@ -24,9 +19,9 @@ async function Post({ params }: Props) {
     <>
       <PostHeader />
       <main className="container">
-        <article className={join(styles.post, nanumGothic.className)}>
+        <article className={styles.post}>
           <TableOfContents toc={toc} />
-          <h1 className={firaMono.className}>{title}</h1>
+          <h1>{title}</h1>
           <p>{description}</p>
           {/* eslint-disable-next-line react/no-danger */}
           <div dangerouslySetInnerHTML={{ __html: content }} />

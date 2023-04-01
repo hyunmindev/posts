@@ -1,9 +1,13 @@
 @use '../../../styles/mixins';
 
-.post-list {
+.postList {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
+
+  * {
+    font-family: var(--font-fira-mono);
+  }
 }
 
 .post {

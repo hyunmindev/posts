@@ -1,19 +1,14 @@
-import { firaMono } from '@/styles/font';
-import { join } from '@/utils';
-
 import styles from './index.module.scss';
 
 function Logo() {
   return (
     <a href="/">
-      <h1 className={join(styles.name, firaMono.className)}>
+      <h1 className={styles.name}>
         Hyunmin
         <br />
         Jung
       </h1>
-      <p className={join(styles.job, firaMono.className)}>
-        front-end Developer
-      </p>
+      <p className={styles.job}>front-end Developer</p>
     </a>
   );
 }

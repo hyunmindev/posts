@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 import { getDatabase, getPosts } from '@/services/notion';
-import { firaMono } from '@/styles/font';
 import categoryStyles from '@/styles/modules/category.module.scss';
 import { join } from '@/utils';
 
@@ -11,7 +10,7 @@ async function PostList() {
   const [posts, database] = await Promise.all([getPosts(), getDatabase()]);
 
   return (
-    <ul className={styles['post-list']}>
+    <ul className={styles.postList}>
       {posts.map(({ category, createdTime, slug, title }) => {
         const { color } = database.categories[category] as { color: string };
         return (
@@ -21,21 +20,14 @@ async function PostList() {
           >
             <Link href={`/posts/${slug}`}>
               <p
-                className={join(
-                  categoryStyles.default,
-                  categoryStyles[color],
-                  firaMono.className
-                )}
+                className={join(categoryStyles.default, categoryStyles[color])}
               >
                 {category}
               </p>
-              <time
-                className={firaMono.className}
-                dateTime={createdTime.format('YYYY-MM-DD')}
-              >
+              <time dateTime={createdTime.format('YYYY-MM-DD')}>
                 {createdTime.format('MMMM D, YYYY')}
               </time>
-              <h2 className={firaMono.className}>{title}</h2>
+              <h2>{title}</h2>
             </Link>
           </li>
         );

@@ -4,8 +4,9 @@ import { Analytics } from '@vercel/analytics/react';
 import { ReactNode } from 'react';
 
 import GlobalFooter from '@/app/components/GlobalFooter';
-import StyledComponentsProvider from '@/app/components/StyledComponentRegistery';
 import { BLOG_DESCRIPTION, BLOG_TITLE } from '@/constants/meta';
+import { firaMono, nanumGothic } from '@/styles/font';
+import { join } from '@/utils';
 
 interface Props {
   children: ReactNode;
@@ -22,8 +23,8 @@ function RootLayout({ children }: Props) {
       data-theme="dark"
       lang="ko"
     >
-      <body>
-        <StyledComponentsProvider>{children}</StyledComponentsProvider>
+      <body className={join(nanumGothic.variable, firaMono.variable)}>
+        {children}
         <Analytics debug={false} />
         <GlobalFooter />
       </body>
