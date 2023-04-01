@@ -24,7 +24,7 @@
     "notion-to-md": "^2.5.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "rehype-prism": "^2.2.0",
+    "rehype-highlight": "^6.0.0",
     "rehype-raw": "^6.1.1",
     "rehype-stringify": "^9.0.3",
     "remark": "^14.0.2",

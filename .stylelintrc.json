@@ -9,5 +9,8 @@
       "files": ["**/*.tsx"],
       "customSyntax": "postcss-styled"
     }
-  ]
+  ],
+  "rules": {
+    "selector-class-pattern": null
+  }
 }

@@ -3,7 +3,7 @@ import 'server-only';
 import camelcaseKeys from 'camelcase-keys';
 import dayjs from 'dayjs';
 import { cache } from 'react';
-import rehypePrism from 'rehype-prism';
+import rehypeHighlight from 'rehype-highlight';
 import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
 import { remark } from 'remark';
@@ -64,7 +64,7 @@ export const getPost = cache(async (slug: string): Promise<Post> => {
   const { data, value } = await remark()
     .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypePrism)
+    .use(rehypeHighlight)
     .use(rehypeRaw)
     .use(rehypeTOC)
     .use(rehypeStringify)
