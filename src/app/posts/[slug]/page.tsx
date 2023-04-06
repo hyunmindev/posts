@@ -1,6 +1,5 @@
 import PostHeader from '@/app/posts/[slug]/components/PostHeader';
 import TableOfContents from '@/app/posts/[slug]/components/TableOfContents';
-import styles from '@/app/posts/[slug]/page.module.scss';
 import { getPost, getPosts } from '@/services/notion';
 
 interface Props {
@@ -19,7 +18,7 @@ async function Post({ params }: Props) {
     <>
       <PostHeader />
       <main className="container">
-        <article className={styles.post}>
+        <article className="post">
           <TableOfContents toc={toc} />
           <h1>{title}</h1>
           <p>{description}</p>
