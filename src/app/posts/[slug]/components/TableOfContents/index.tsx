@@ -1,15 +1,17 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useHashEffect } from '@/hooks/useHash';
 import type { TOC } from '@/types/notion';
 
-import styles from './index.module.scss';
+import { Content, Item, List, Pointer, Wrapper } from './styles';
 
 interface Props {
   toc: TOC[];
 }
+
+const PADDING_LEFT = { h2: 0, h3: 1, h4: 2 };
 
 function TableOfContents({ toc }: Props) {
   const [visibleIDs, setVisibleIDs] = useState<string[]>([]);
@@ -68,26 +70,21 @@ function TableOfContents({ toc }: Props) {
   });
 
   return (
-    <div className={styles.container}>
-      <div className={styles.sticky}>
-        <div
-          className={styles.ticker}
-          style={{
-            transform: `translateY(${currentSectionIndex * 1.6 + 1}rem)`,
-          }}
-        />
-        <ul className={styles.toc}>
+    <Wrapper>
+      <Content>
+        <Pointer translateY={currentSectionIndex * 1.6 + 1} />
+        <List>
           {toc.map(({ id, tagName, text }) => (
-            <li
+            <Item
               key={id}
-              className={styles[tagName]}
+              paddingLeft={PADDING_LEFT[tagName]}
             >
               <a href={`#${id}`}>{text}</a>
-            </li>
+            </Item>
           ))}
-        </ul>
-      </div>
-    </div>
+        </List>
+      </Content>
+    </Wrapper>
   );
 }
 

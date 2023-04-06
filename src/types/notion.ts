@@ -22,6 +22,6 @@ export interface Database {
 
 export interface TOC {
   id: string;
-  tagName: string;
+  tagName: 'h2' | 'h3' | 'h4';
   text: string;
 }
