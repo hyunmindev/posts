@@ -14,14 +14,14 @@
   },
   "dependencies": {
     "@notionhq/client": "^2.2.3",
-    "@picocss/pico": "^1.5.7",
-    "@supabase/supabase-js": "^2.13.1",
+    "@picocss/pico": "^1.5.8",
+    "@supabase/supabase-js": "^2.15.0",
     "@vercel/analytics": "^0.1.11",
     "camelcase-keys": "^8.0.2",
     "dayjs": "^1.11.7",
-    "next": "^13.2.4",
-    "next-seo": "^5.15.0",
-    "next-sitemap": "^4.0.5",
+    "next": "^13.3.0",
+    "next-seo": "^6.0.0",
+    "next-sitemap": "^4.0.6",
     "notion-to-md": "^2.5.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -33,7 +33,8 @@
     "remark-rehype": "^10.1.0",
     "server-only": "^0.0.1",
     "sharp": "^0.32.0",
-    "styled-components": "^5.3.9"
+    "styled-components": "^5.3.9",
+    "uuid": "^9.0.0"
   },
   "optionalDependencies": {
     "@next/bundle-analyzer": "^13.2.3",
@@ -61,11 +62,12 @@
     "stylelint-config-standard-scss": "^7.0.1"
   },
   "devDependencies": {
-    "@types/node": "^18.15.0",
-    "@types/react": "^18.0.28",
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
     "@types/styled-components": "^5.1.26",
-    "sass": "^1.59.2",
-    "typescript": "^4.9.5"
+    "@types/uuid": "^9.0.1",
+    "sass": "^1.61.0",
+    "typescript": "^5.0.4"
   }
 }

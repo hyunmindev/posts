@@ -13,7 +13,7 @@ import remarkRehype from 'remark-rehype';
 import { n2m, notion } from '@/configs/notion';
 import { POST_NOTION_DATABASE_ID } from '@/constants';
 import { Database, Post, TOC } from '@/types/notion';
-// import { rehypeImage } from '@/utils/rehypeImage';
+import { rehypeImage } from '@/utils/rehypeImage';
 import { rehypeTOC } from '@/utils/rehypeTOC';
 
 const processPost = (result: any): Post => {
@@ -68,7 +68,7 @@ export const getPost = cache(async (slug: string): Promise<Post> => {
     .use(rehypeHighlight)
     .use(rehypeRaw)
     .use(rehypeTOC)
-    // .use(rehypeImage)
+    .use(rehypeImage)
     .use(rehypeStringify)
     .process(rawPost);
   return {
