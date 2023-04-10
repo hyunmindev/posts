@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useHashEffect } from '@/hooks/useHash';
 import type { TOC } from '@/types/notion';
 
-import { Content, Item, List, Pointer, Wrapper } from './styles';
+import { Item, List, Pointer, Wrapper } from './styles';
 
 interface Props {
   toc: TOC[];
@@ -71,19 +71,17 @@ function TableOfContents({ toc }: Props) {
 
   return (
     <Wrapper>
-      <Content>
-        <Pointer translateY={currentSectionIndex * 1.6 + 1} />
-        <List>
-          {toc.map(({ id, tagName, text }) => (
-            <Item
-              key={id}
-              paddingLeft={PADDING_LEFT[tagName]}
-            >
-              <a href={`#${id}`}>{text}</a>
-            </Item>
-          ))}
-        </List>
-      </Content>
+      <Pointer translateY={currentSectionIndex * 1.6 + 1} />
+      <List>
+        {toc.map(({ id, tagName, text }) => (
+          <Item
+            key={id}
+            paddingLeft={PADDING_LEFT[tagName]}
+          >
+            <a href={`#${id}`}>{text}</a>
+          </Item>
+        ))}
+      </List>
     </Wrapper>
   );
 }
