@@ -1,4 +1,4 @@
-export function ScrollUpButton() {
+export function ScrollUpIcon() {
   return (
     <svg
       height="48"
@@ -11,7 +11,7 @@ export function ScrollUpButton() {
   );
 }
 
-export function ScrollDownButton() {
+export function ScrollDownIcon() {
   return (
     <svg
       height="48"

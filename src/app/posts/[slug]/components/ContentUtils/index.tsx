@@ -1,9 +1,9 @@
 'use client';
 
 import {
-  ScrollDownButton,
-  ScrollUpButton,
-} from '@/app/posts/[slug]/components/Buttons';
+  ScrollDownIcon,
+  ScrollUpIcon,
+} from 'src/app/posts/[slug]/components/Icons';
 
 import { Button, Wrapper } from './styles';
 
@@ -11,6 +11,7 @@ function ContentUtils() {
   return (
     <Wrapper>
       <Button
+        aria-label="scroll up to top"
         onClick={() =>
           window.scrollTo({
             behavior: 'smooth',
@@ -19,9 +20,10 @@ function ContentUtils() {
         }
         type="button"
       >
-        <ScrollUpButton />
+        <ScrollUpIcon />
       </Button>
       <Button
+        aria-label="scroll down to bottom"
         onClick={() =>
           window.scrollTo({
             behavior: 'smooth',
@@ -30,7 +32,7 @@ function ContentUtils() {
         }
         type="button"
       >
-        <ScrollDownButton />
+        <ScrollDownIcon />
       </Button>
     </Wrapper>
   );
