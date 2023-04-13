@@ -49,3 +49,16 @@ ul li {
     }
   }
 }
+
+code {
+  font-family: var(--font-fira-mono);
+  border-radius: 0.4rem;
+}
+
+code:not(.hljs) {
+  padding: 0.2rem 0.4rem;
+  font-size: 1rem;
+  color: #ccc;
+  background: var(--color-gray-100);
+  background-color: #564849;
+}

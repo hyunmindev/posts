@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   position: sticky;
-  top: calc(100vh - 180px);
+  top: 80px;
   display: flex;
   flex-direction: column;
-  border-left: 1px solid #666;
+  align-items: end;
+  border-right: 1px solid #666;
 `;
 
 export const Button = styled.button`
