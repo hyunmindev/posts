@@ -6,13 +6,9 @@ const hasCheckboxInChildren = (children: Element[]) =>
       child.tagName === 'input' && child.properties?.type === 'checkbox'
   );
 
-const improveCheckboxes = (children: Element[]) => {
+const improveCheckboxes = (children: Element[]) =>
   children.forEach((child) => {
-    if (
-      child.tagName === 'li' &&
-      child.children &&
-      hasCheckboxInChildren(child.children as Element[])
-    ) {
+    if (child.children && hasCheckboxInChildren(child.children as Element[])) {
       const checkbox = child.children[0] as {
         properties: { [key: string]: string };
       };
@@ -23,10 +19,9 @@ const improveCheckboxes = (children: Element[]) => {
       improveCheckboxes(child.children as Element[]);
     }
   });
-};
 
-export const rehypeA11y = () => {
-  return async ({ children }: { children: Element[] }) => {
+export const rehypeA11y =
+  () =>
+  async ({ children }: { children: Element[] }) => {
     improveCheckboxes(children);
   };
-};

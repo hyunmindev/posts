@@ -6,7 +6,7 @@ import { supabase } from '@/configs/supabase';
 
 const SIZE = 768;
 
-const getImageNodes = (children: Element[], imageNodes: Element[]) => {
+const getImageNodes = (children: Element[], imageNodes: Element[]) =>
   children.forEach((child) => {
     if (child.tagName === 'img') {
       imageNodes.push(child);
@@ -15,7 +15,6 @@ const getImageNodes = (children: Element[], imageNodes: Element[]) => {
       getImageNodes(child.children as Element[], imageNodes);
     }
   });
-};
 
 const processImageNode = async (node: Element, index: number) => {
   const src = node.properties?.src;
@@ -55,8 +54,9 @@ const processImageNode = async (node: Element, index: number) => {
   node.properties.height = Math.round(height * (SIZE / width));
 };
 
-export const rehypeImage = () => {
-  return async ({ children }: { children: Element[] }) => {
+export const rehypeImage =
+  () =>
+  async ({ children }: { children: Element[] }) => {
     if (process.env.NODE_ENV === 'development') {
       return;
     }
@@ -64,4 +64,3 @@ export const rehypeImage = () => {
     getImageNodes(children, imageNodes);
     await Promise.all(imageNodes.map(processImageNode));
   };
-};
