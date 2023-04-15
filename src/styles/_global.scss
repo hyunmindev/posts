@@ -9,6 +9,14 @@ ul li {
   list-style: none;
 }
 
+*,
+h1,
+h2,
+p,
+footer {
+  font-family: var(--font-fira-mono);
+}
+
 .header {
   display: flex;
   padding-top: 3rem;
@@ -25,16 +33,15 @@ ul li {
   max-width: 768px;
   margin: auto;
 
-  h1 {
-    font-family: var(--font-fira-mono);
-  }
-
   p,
   h2,
   h3,
   h4,
   h5,
-  h6 {
+  h6,
+  th,
+  tr,
+  li {
     font-family: var(--font-nanum-gothic);
   }
 
@@ -51,7 +58,6 @@ ul li {
 }
 
 code {
-  font-family: var(--font-fira-mono);
   border-radius: 0.4rem;
 }
 

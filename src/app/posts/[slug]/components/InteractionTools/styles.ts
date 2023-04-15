@@ -18,11 +18,11 @@ export const Button = styled.button`
   padding: 0;
   margin: 0.4rem 0.8rem;
   background: none;
-  border: solid #666;
+  border: 2px solid #666;
 
   svg {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.4rem;
+    height: 1.4rem;
     fill: #666;
   }
 `;

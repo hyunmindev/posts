@@ -8,7 +8,7 @@ function Logo() {
         <br />
         Jung
       </h1>
-      <p className={styles.job}>front-end Developer</p>
+      <p className={styles.job}>front-end developer</p>
     </a>
   );
 }

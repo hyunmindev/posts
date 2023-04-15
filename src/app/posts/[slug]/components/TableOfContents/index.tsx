@@ -19,23 +19,39 @@ function TableOfContents({ toc }: Props) {
 
   /* h2, h3, h4 io */
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      const visibleEntries = entries
-        .filter(({ intersectionRatio }) => intersectionRatio > 0)
-        .map(({ target }) => target.id);
-      const hiddenEntries = entries
-        .filter(({ intersectionRatio }) => intersectionRatio === 0)
-        .map(({ target }) => target.id);
-      setVisibleIDs((prevState) => {
-        return [
-          ...prevState
-            .filter((id) => !hiddenEntries.includes(id))
-            .concat(visibleEntries),
-        ];
-      });
-    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter(({ intersectionRatio }) => intersectionRatio > 0)
+          .map(({ target }) => target.id);
+        const hiddenEntries = entries
+          .filter(({ intersectionRatio }) => intersectionRatio === 0)
+          .map(({ target }) => target.id);
+        setVisibleIDs((prevState) => {
+          return [
+            ...prevState
+              .filter((id) => !hiddenEntries.includes(id))
+              .concat(visibleEntries),
+          ];
+        });
+      },
+      { rootMargin: '-10% -10%', threshold: [0, 0.5, 1] }
+    );
     const sections = document.querySelectorAll('h2, h3, h4');
     sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  /* footer io */
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry!.isIntersecting) {
+        setVisibleIDs([]);
+        setCurrentSectionIndex(toc.length - 1);
+      }
+    });
+    const section = document.querySelector('footer')!;
+    observer.observe(section);
     return () => observer.disconnect();
   }, []);
 
