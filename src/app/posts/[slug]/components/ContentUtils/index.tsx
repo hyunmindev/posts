@@ -3,7 +3,7 @@
 import {
   ScrollDownIcon,
   ScrollUpIcon,
-} from 'src/app/posts/[slug]/components/Icons';
+} from '@/app/posts/[slug]/components/Icons';
 
 import { Button, Wrapper } from './styles';
 

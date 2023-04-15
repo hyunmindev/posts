@@ -13,7 +13,8 @@ ul li {
 h1,
 h2,
 p,
-footer {
+footer,
+code {
   font-family: var(--font-fira-mono);
 }
 
@@ -58,13 +59,13 @@ footer {
 }
 
 code {
-  border-radius: 0.4rem;
+  border-radius: 6px;
 }
 
 code:not(.hljs) {
-  padding: 0.2rem 0.4rem;
+  padding: 4px 6px;
   font-size: 1rem;
   color: #ccc;
   background: var(--color-gray-100);
-  background-color: #564849;
+  background-color: #314039;
 }

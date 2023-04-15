@@ -1,4 +1,5 @@
 @import '@picocss/pico/scss/pico.slim';
+@import '@picocss/pico/scss/utilities/tooltip';
 
 [data-theme='dark'] {
   --background-color: #262729;

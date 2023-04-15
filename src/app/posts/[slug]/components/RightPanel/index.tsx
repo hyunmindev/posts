@@ -13,9 +13,11 @@ interface Props {
 
 function RightPanel({ toc }: Props) {
   const { lessThanXL } = useBreakpoint();
+
   if (lessThanXL) {
     return null;
   }
+
   return (
     <Wrapper>
       <TableOfContents toc={toc} />

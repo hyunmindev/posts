@@ -17,7 +17,7 @@ export const Button = styled.button`
   padding: 0;
   margin: 0.4rem 0.8rem;
   background: none;
-  border: 2px solid #666;
+  border: 1px solid #666;
 
   svg {
     width: 1.4rem;

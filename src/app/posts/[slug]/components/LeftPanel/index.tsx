@@ -1,19 +1,24 @@
 'use client';
 
-import InteractionTools from 'src/app/posts/[slug]/components/InteractionTools';
-
+import InteractionTools from '@/app/posts/[slug]/components/InteractionTools';
 import { useBreakpoint } from '@/hooks/useBreakpoint';
 
 import { Wrapper } from './styles';
 
-function LeftPanel() {
+interface Props {
+  slug: string;
+}
+
+function LeftPanel({ slug }: Props) {
   const { lessThanXL } = useBreakpoint();
+
   if (lessThanXL) {
     return null;
   }
+
   return (
     <Wrapper>
-      <InteractionTools />
+      <InteractionTools slug={slug} />
     </Wrapper>
   );
 }

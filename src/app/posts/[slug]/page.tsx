@@ -20,7 +20,7 @@ async function Post({ params }: Props) {
       <PostHeader />
       <main className="container">
         <article className="post">
-          <LeftPanel />
+          <LeftPanel slug={params.slug} />
           <RightPanel toc={toc} />
           <h1>{title}</h1>
           <p>{description}</p>
