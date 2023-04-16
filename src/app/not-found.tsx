@@ -1,8 +1,16 @@
+import Link from 'next/link';
+
+import IndexHeader from '@/app/components/IndexHeader';
+
 function NotFound() {
   return (
-    <div>
-      <h1>Not Found</h1>
-    </div>
+    <>
+      <IndexHeader />
+      <main className="container">
+        <h1>Page Not Found</h1>
+        <Link href="/">홈으로 가기</Link>
+      </main>
+    </>
   );
 }
 

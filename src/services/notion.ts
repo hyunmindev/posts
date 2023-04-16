@@ -2,6 +2,7 @@ import 'server-only';
 
 import camelcaseKeys from 'camelcase-keys';
 import dayjs from 'dayjs';
+import { notFound } from 'next/navigation';
 import { cache } from 'react';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeRaw from 'rehype-raw';
@@ -59,7 +60,7 @@ export const getPost = cache(async (slug: string): Promise<Post> => {
   });
   const [response] = results;
   if (!response) {
-    throw new Error('Notion Error');
+    notFound();
   }
   const blocks = await n2m.pageToMarkdown(response.id);
   const rawPost = n2m.toMarkdownString(blocks);
