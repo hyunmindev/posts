@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
+import { useDebounce } from '@/hooks/useDebounce';
+
 const getInteraction = (slug: string): Interaction =>
   JSON.parse(localStorage.getItem(slug) ?? '{}');
-
 const setInteraction = (slug: string, interaction: Partial<Interaction>) =>
   localStorage.setItem(
     slug,
@@ -15,22 +16,7 @@ interface Interaction {
   좋아요: boolean;
 }
 
-function useDebounce<T>(value: T, delay: number): T {
-  // State and setters for debounced value
-  const [debouncedValue, setDebouncedValue] = useState<T>(value);
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [value, delay]);
-  return debouncedValue;
-}
-
 export const useInteraction = (
-  // @ts-ignore
   userID: string | null,
   slug: string
 ): {
@@ -48,19 +34,21 @@ export const useInteraction = (
     getInteraction(slug).조회 ?? false
   );
 
-  const debouncedIs좋아요 = useDebounce(is좋아요, 500);
+  const debouncedIs좋아요 = useDebounce(is좋아요, 1000);
 
   useEffect(() => {
     setInteraction(slug, { 좋아요: debouncedIs좋아요 });
-  }, [debouncedIs좋아요, slug]);
-
+    fetch(`/api/interactions`, {
+      body: JSON.stringify({ userID }),
+      method: 'PUT',
+    });
+  }, [debouncedIs좋아요, userID]);
   useEffect(() => {
     setInteraction(slug, { 공유: is공유 });
-  }, [is공유, slug]);
-
+  }, [is공유]);
   useEffect(() => {
     setInteraction(slug, { 조회: is조회 });
-  }, [is조회, slug]);
+  }, [is조회]);
 
   return {
     공유: [is공유, setIs공유],

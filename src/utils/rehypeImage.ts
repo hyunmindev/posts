@@ -1,3 +1,5 @@
+import 'server-only';
+
 import type { Element } from 'hast';
 import sharp from 'sharp';
 import { v5 as uuidv5 } from 'uuid';

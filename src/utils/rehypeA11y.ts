@@ -1,3 +1,5 @@
+import 'server-only';
+
 import type { Element, Literal } from 'hast';
 
 const hasCheckboxInChildren = (children: Element[]) =>

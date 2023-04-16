@@ -72,7 +72,6 @@ function TableOfContents({ toc }: Props) {
     if (visibleIDs.length !== 0) {
       setCurrentSectionIndex(toc.findIndex(({ id }) => visibleIDs[0] === id));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(visibleIDs)]);
 
   useHashEffect((hash) => {

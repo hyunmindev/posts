@@ -15,6 +15,7 @@ interface Props {
 
 function InteractionTools({ slug }: Props) {
   const userID = useUserID();
+
   const {
     조회: [, setIs조회],
     좋아요: [is좋아요, setIs좋아요],

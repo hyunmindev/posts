@@ -10,7 +10,6 @@ export const useHash = (): [string, (hash: string) => void] => {
   useEffect(() => {
     window.addEventListener('hashchange', hashChangeHandler);
     return () => window.removeEventListener('hashchange', hashChangeHandler);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const updateHash = useCallback(
@@ -29,6 +28,5 @@ export const useHashEffect = (callback: (hash: string) => void) => {
   const [hash] = useHash();
   useEffect(() => {
     callback(hash);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hash]);
 };
