@@ -7,3 +7,12 @@ export const BREAKPOINT = {
   xl: 1200,
   xs: 0,
 };
+
+export const CATEGORY_COLOR: { [key: string]: string } = {
+  blue: '#5499d7',
+  orange: '#e87851',
+  pink: '#f35b70',
+  purple: '#a67dc1',
+  red: '#f66a6a',
+  yellow: '#ffda54',
+};

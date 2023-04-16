@@ -1,33 +1,35 @@
 import Link from 'next/link';
 
+import ViewPointer from '@/app/components/ViewPointer';
+import { CATEGORY_COLOR } from '@/constants';
 import { getDatabase, getPosts } from '@/services/notion';
-import categoryStyles from '@/styles/modules/category.module.scss';
-import { join } from '@/utils';
 
 import styles from './index.module.scss';
 
 async function PostList() {
-  const [posts, database] = await Promise.all([getPosts(), getDatabase()]);
+  const [posts, { categories }] = await Promise.all([
+    getPosts(),
+    getDatabase(),
+  ]);
 
   return (
     <ul className={styles.postList}>
       {posts.map(({ category, createdTime, slug, title }) => {
-        const { color } = database.categories[category] as { color: string };
+        const { color } = categories[category] as { color: string };
         return (
           <li
             key={slug}
             className={styles.post}
           >
             <Link href={`/posts/${slug}`}>
-              <p
-                className={join(categoryStyles.default, categoryStyles[color])}
-              >
+              <p style={{ color: CATEGORY_COLOR[color] ?? '#999' }}>
                 {category}
               </p>
               <time dateTime={createdTime.format('YYYY-MM-DD')}>
                 {createdTime.format('MMMM D, YYYY')}
               </time>
               <h2>{title}</h2>
+              <ViewPointer slug={slug} />
             </Link>
           </li>
         );

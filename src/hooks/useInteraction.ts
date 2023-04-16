@@ -1,20 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { useDebounce } from '@/hooks/useDebounce';
-
-const getInteraction = (slug: string): Interaction =>
-  JSON.parse(localStorage.getItem(slug) ?? '{}');
-const setInteraction = (slug: string, interaction: Partial<Interaction>) =>
-  localStorage.setItem(
-    slug,
-    JSON.stringify({ ...getInteraction(slug), ...interaction })
-  );
-
-interface Interaction {
-  공유: boolean;
-  조회: boolean;
-  좋아요: boolean;
-}
+import { getInteraction, setInteraction } from '@/utils';
 
 export const useInteraction = (
   userID: string | null,
@@ -38,7 +25,7 @@ export const useInteraction = (
 
   useEffect(() => {
     setInteraction(slug, { 좋아요: debouncedIs좋아요 });
-    fetch(`/api/interactions`, {
+    fetch('/api/interactions', {
       body: JSON.stringify({ userID }),
       method: 'PUT',
     });
