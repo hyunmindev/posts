@@ -26,7 +26,7 @@ export const DEFAULT_METADATA: Metadata = {
       alt: BLOG_TITLE,
       height: 600,
       type: 'image/png',
-      url: `${BLOG_URL}/images/og.png`,
+      url: `${BLOG_URL}/api/og`,
       width: 1200,
     },
     locale: 'ko_KR',
