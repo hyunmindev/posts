@@ -1,10 +1,18 @@
+import { Metadata } from 'next';
+
 import LeftPanel from '@/app/posts/[slug]/components/LeftPanel';
 import PostHeader from '@/app/posts/[slug]/components/PostHeader';
 import RightPanel from '@/app/posts/[slug]/components/RightPanel';
+import { DEFAULT_METADATA } from '@/constants/meta';
 import { getPost, getPosts } from '@/services/notion';
 
 interface Props {
   params: { slug: string };
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  // TODO: static to dynamic
+  return { ...DEFAULT_METADATA };
 }
 
 export async function generateStaticParams() {
