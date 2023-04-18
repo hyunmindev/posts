@@ -16,6 +16,7 @@ p,
 footer,
 code {
   font-family: var(--font-fira-mono);
+  word-break: keep-all;
 }
 
 .header {
@@ -50,6 +51,8 @@ code {
     font-size: 20px;
     line-height: 30px;
     letter-spacing: -0.003em;
+    word-break: break-all;
+    word-spacing: 2px;
 
     @include mixins.breakpoint(sm) {
       font-size: 22px;
