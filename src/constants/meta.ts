@@ -24,7 +24,7 @@ export const DEFAULT_METADATA: Metadata = {
     emails: [EMAIL],
     images: {
       alt: BLOG_TITLE,
-      height: 600,
+      height: 630,
       type: 'image/png',
       url: `${BLOG_URL}/api/og`,
       width: 1200,
@@ -40,9 +40,7 @@ export const DEFAULT_METADATA: Metadata = {
   title: BLOG_TITLE,
   viewport: {
     initialScale: 1,
-    maximumScale: 1,
     minimumScale: 1,
-    userScalable: false,
     width: 'device-width',
   },
 };
