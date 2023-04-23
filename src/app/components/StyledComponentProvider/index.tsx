@@ -1,14 +1,10 @@
 'use client';
 
 import { useServerInsertedHTML } from 'next/navigation';
-import { ReactNode, useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 
-interface Props {
-  children: ReactNode;
-}
-
-function StyledComponentsProvider({ children }: Props) {
+function StyledComponentsProvider({ children }: PropsWithChildren) {
   const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet());
 
   useServerInsertedHTML(() => {
@@ -19,7 +15,7 @@ function StyledComponentsProvider({ children }: Props) {
   });
 
   if (typeof window !== 'undefined') {
-    return children as JSX.Element;
+    return <>{children}</>;
   }
 
   return (

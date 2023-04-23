@@ -1,18 +1,14 @@
 import '@/styles/index.scss';
 
 import { Analytics } from '@vercel/analytics/react';
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 
 import GlobalFooter from '@/app/components/GlobalFooter';
 import StyledComponentsProvider from '@/app/components/StyledComponentProvider';
 import { firaMono, nanumGothic } from '@/styles/font';
 import { join } from '@/utils';
 
-interface Props {
-  children: ReactNode;
-}
-
-function RootLayout({ children }: Props) {
+function RootLayout({ children }: PropsWithChildren) {
   return (
     <html
       data-theme="dark"

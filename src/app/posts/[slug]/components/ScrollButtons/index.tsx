@@ -7,7 +7,7 @@ import {
 
 import { Button, Wrapper } from './styles';
 
-function ContentUtils() {
+function ScrollButtons() {
   return (
     <Wrapper>
       <Button
@@ -38,4 +38,4 @@ function ContentUtils() {
   );
 }
 
-export default ContentUtils;
+export default ScrollButtons;

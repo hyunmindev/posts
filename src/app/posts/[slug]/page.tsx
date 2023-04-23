@@ -1,4 +1,5 @@
 import { type Metadata } from 'next';
+import ViewCounter from 'src/app/posts/[slug]/components/ViewCounter';
 
 import LeftPanel from '@/app/posts/[slug]/components/LeftPanel';
 import MetaPanel from '@/app/posts/[slug]/components/MetaPanel';
@@ -33,7 +34,7 @@ async function Post({ params: { slug } }: Props) {
   } = post;
 
   return (
-    <>
+    <ViewCounter slug={slug}>
       <PostHeader />
       <main className="container">
         <article className="post">
@@ -45,12 +46,13 @@ async function Post({ params: { slug } }: Props) {
             content={content}
             createdTime={createdTime}
             lastEditedTime={lastEditedTime}
+            slug={slug}
           />
           {/* eslint-disable-next-line react/no-danger */}
           <div dangerouslySetInnerHTML={{ __html: content }} />
         </article>
       </main>
-    </>
+    </ViewCounter>
   );
 }
 

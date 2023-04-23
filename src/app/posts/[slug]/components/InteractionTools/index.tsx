@@ -1,11 +1,8 @@
-import { useEffect } from 'react';
-
 import {
   EmptyLikeIcon,
   FilledLikeIcon,
 } from '@/app/posts/[slug]/components/Icons';
-import { useInteraction } from '@/hooks/useInteraction';
-import { useUserID } from '@/hooks/useUserID';
+import { useLike } from '@/hooks/useLike';
 
 import { Button, Wrapper } from './styles';
 
@@ -14,30 +11,16 @@ interface Props {
 }
 
 function InteractionTools({ slug }: Props) {
-  const userID = useUserID();
-
-  const {
-    조회: [, setIs조회],
-    좋아요: [is좋아요, setIs좋아요],
-  } = useInteraction(userID, slug);
-
-  useEffect(() => {
-    setIs조회(true);
-  }, []);
-
-  const handleClick좋아요 = () => setIs좋아요(!is좋아요);
-
-  if (!userID) {
-    return null;
-  }
+  const [isLiked, setIsLiked] = useLike(slug);
+  const like = () => setIsLiked(!isLiked);
 
   return (
     <Wrapper>
-      {is좋아요 ? (
+      {isLiked ? (
         <Button
           aria-label="like this content"
           data-tooltip="42"
-          onClick={handleClick좋아요}
+          onClick={like}
           type="button"
         >
           <FilledLikeIcon />
@@ -46,7 +29,7 @@ function InteractionTools({ slug }: Props) {
         <Button
           aria-label="dislike this content"
           data-tooltip="42"
-          onClick={handleClick좋아요}
+          onClick={like}
           type="button"
         >
           <EmptyLikeIcon />

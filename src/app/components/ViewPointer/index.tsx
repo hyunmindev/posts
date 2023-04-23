@@ -1,9 +1,9 @@
 'use client';
 
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { getInteraction } from '@/utils';
+import { getIsViewed } from '@/utils/localStorage';
 
 interface Props {
   slug: string;
@@ -20,13 +20,13 @@ const Pointer = styled.div`
 `;
 
 function ViewPointer({ slug }: Props) {
-  const [is조회, setIs조회] = useState(true);
+  const [isViewed, setIsViewed] = useState(true);
 
-  useLayoutEffect(() => {
-    setIs조회(getInteraction(slug).조회);
+  useEffect(() => {
+    setIsViewed(getIsViewed(slug));
   }, []);
 
-  if (is조회) {
+  if (isViewed) {
     return null;
   }
 

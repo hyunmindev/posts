@@ -5,15 +5,17 @@ import {
   ClockIcon,
   ViewIcon,
 } from '@/app/posts/[slug]/components/Icons';
+import ViewCount from '@/app/posts/[slug]/components/ViewCount';
 import { calculateReadingTime } from '@/utils';
 
 interface Props {
   content: string;
   createdTime: Dayjs;
   lastEditedTime: Dayjs;
+  slug: string;
 }
 
-function MetaPanel({ content, createdTime, lastEditedTime }: Props) {
+function MetaPanel({ content, createdTime, lastEditedTime, slug }: Props) {
   return (
     <div className="meta">
       <div data-tooltip={`Updated on ${lastEditedTime.format('YYYY-MM-DD')}`}>
@@ -26,7 +28,7 @@ function MetaPanel({ content, createdTime, lastEditedTime }: Props) {
       </div>
       <div>
         <ViewIcon />
-        <p>42</p>
+        <ViewCount slug={slug} />
       </div>
     </div>
   );

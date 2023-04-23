@@ -1,6 +1,6 @@
 'use client';
 
-import ContentUtils from '@/app/posts/[slug]/components/ContentUtils';
+import ScrollButtons from '@/app/posts/[slug]/components/ScrollButtons';
 import TableOfContents from '@/app/posts/[slug]/components/TableOfContents';
 import { useBreakpoint } from '@/hooks/useBreakpoint';
 import { TOC } from '@/types/notion';
@@ -21,7 +21,7 @@ function RightPanel({ toc }: Props) {
   return (
     <Wrapper>
       <TableOfContents toc={toc} />
-      <ContentUtils />
+      <ScrollButtons />
     </Wrapper>
   );
 }
