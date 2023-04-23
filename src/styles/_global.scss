@@ -35,6 +35,11 @@ code {
   max-width: 768px;
   margin: auto;
 
+  h1 {
+    margin-bottom: 8px;
+    font-size: 40px;
+  }
+
   p,
   h2,
   h3,
@@ -57,6 +62,43 @@ code {
     @include mixins.breakpoint(sm) {
       font-size: 22px;
       line-height: 34px;
+    }
+  }
+
+  .description {
+    margin: 0;
+    font-size: 16px;
+    opacity: 0.8;
+  }
+
+  .meta {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #666;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0 8px;
+      border-bottom: none;
+
+      svg {
+        width: 1.4rem;
+        height: 1.4rem;
+        margin-right: 6px;
+        fill: #666;
+      }
+
+      p {
+        margin: 0;
+        font-family: var(--font-fira-mono);
+        font-size: 14px;
+        word-spacing: -4px;
+      }
     }
   }
 }
