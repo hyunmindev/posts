@@ -11,7 +11,10 @@ function ViewCount({ slug }: Props) {
   const [viewCount, setViewCount] = useState(0);
 
   useEffect(() => {
-    fetch(`/api/views?slug=${slug}`, { method: 'GET' })
+    fetch(`/api/views?slug=${slug}`, {
+      method: 'GET',
+      next: { revalidate: 120 },
+    })
       .then((res) => res.json())
       .then((data) => {
         setViewCount(data);
