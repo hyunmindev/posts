@@ -101,6 +101,19 @@ code {
       }
     }
   }
+
+  pre {
+    position: relative;
+
+    .copy {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      display: none; // TODO: Implement copy button
+      width: 36px;
+      height: 36px;
+    }
+  }
 }
 
 code {

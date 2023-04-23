@@ -15,6 +15,7 @@ import { n2m, notion } from '@/configs/notion';
 import { POST_NOTION_DATABASE_ID } from '@/constants';
 import { Database, Post, TOC } from '@/types/notion';
 import { rehypeA11y } from '@/utils/rehypeA11y';
+import { rehypeCode } from '@/utils/rehypeCode';
 import { rehypeImage } from '@/utils/rehypeImage';
 import { rehypeTOC } from '@/utils/rehypeTOC';
 
@@ -68,6 +69,7 @@ export const getPost = cache(async (slug: string): Promise<Post> => {
     .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeHighlight)
+    .use(rehypeCode)
     .use(rehypeRaw)
     .use(rehypeTOC)
     .use(rehypeA11y)

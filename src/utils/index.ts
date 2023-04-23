@@ -29,6 +29,7 @@ export const getMetadata = (post: Post): Metadata => {
   const modifiedTime = lastEditedTime.toISOString();
   return {
     ...DEFAULT_METADATA,
+    description,
     keywords: tags,
     openGraph: {
       authors: NAME,
