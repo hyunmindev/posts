@@ -34,6 +34,11 @@ const processImageNode = async (node: Element, index: number) => {
   const { height = SIZE, width = SIZE } = await image.metadata();
   const buffer = await image.toBuffer();
 
+  const placeholder = await image
+    .resize(2)
+    .toBuffer()
+    .then((data) => data.toString('base64'));
+
   const urlWithQuery = new URL(src);
   const url = urlWithQuery.host + urlWithQuery.pathname;
   const hashedURL = uuidv5(url, uuidv5.URL);
@@ -51,6 +56,7 @@ const processImageNode = async (node: Element, index: number) => {
     node.properties = {};
   }
   node.properties.src = publicURL;
+  node.properties.style = `background: url('data:image/webp;base64,${placeholder}')`;
   node.properties.loading = index ? 'lazy' : 'eager';
   node.properties.width = SIZE;
   node.properties.height = Math.round(height * (SIZE / width));
@@ -60,7 +66,7 @@ export const rehypeImage =
   () =>
   async ({ children }: { children: Element[] }) => {
     if (process.env.NODE_ENV === 'development') {
-      return;
+      // return;
     }
     const imageNodes: Element[] = [];
     getImageNodes(children, imageNodes);
