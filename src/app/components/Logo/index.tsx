@@ -3,11 +3,11 @@ import styles from './index.module.scss';
 function Logo() {
   return (
     <a href="/">
-      <h1 className={styles.name}>
+      <h3 className={styles.name}>
         Hyunmin
         <br />
         Jung
-      </h1>
+      </h3>
       <p className={styles.job}>front-end developer</p>
     </a>
   );

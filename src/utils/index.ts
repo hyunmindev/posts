@@ -29,6 +29,9 @@ export const getMetadata = (post: Post): Metadata => {
   const modifiedTime = lastEditedTime.toISOString();
   return {
     ...DEFAULT_METADATA,
+    alternates: {
+      canonical: url,
+    },
     description,
     keywords: tags,
     openGraph: {
@@ -53,6 +56,7 @@ export const getMetadata = (post: Post): Metadata => {
       type: 'article',
       url,
     },
+    title,
   };
 };
 
