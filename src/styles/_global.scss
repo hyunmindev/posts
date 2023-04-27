@@ -109,9 +109,28 @@ code {
       position: absolute;
       top: 8px;
       right: 8px;
-      display: none; // TODO: Implement copy button
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      background: none;
+      border: 1px solid #888;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        fill: #888;
+      }
+    }
+
+    .copy:focus {
+      svg {
+        width: 20px;
+        height: 20px;
+        fill: #357b41;
+        transition: all 0.2s ease-in-out;
+      }
     }
   }
 }

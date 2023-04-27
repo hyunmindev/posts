@@ -1,5 +1,5 @@
 import { type Metadata } from 'next';
-import ViewCounter from 'src/app/posts/[slug]/components/ViewCounter';
+import ClientProcess from 'src/app/posts/[slug]/components/ClientProcess';
 
 import LeftPanel from '@/app/posts/[slug]/components/LeftPanel';
 import MetaPanel from '@/app/posts/[slug]/components/MetaPanel';
@@ -34,7 +34,7 @@ async function Post({ params: { slug } }: Props) {
   } = post;
 
   return (
-    <ViewCounter slug={slug}>
+    <ClientProcess slug={slug}>
       <PostHeader />
       <main className="container">
         <article className="post">
@@ -52,7 +52,7 @@ async function Post({ params: { slug } }: Props) {
           <div dangerouslySetInnerHTML={{ __html: content }} />
         </article>
       </main>
-    </ViewCounter>
+    </ClientProcess>
   );
 }
 
