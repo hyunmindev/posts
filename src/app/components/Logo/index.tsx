@@ -1,14 +1,15 @@
-import styles from './index.module.scss';
-
 function Logo() {
   return (
-    <a href="/">
-      <h3 className={styles.name}>
+    <a
+      className="logo"
+      href="/"
+    >
+      <p className="name">
         Hyunmin
         <br />
         Jung
-      </h3>
-      <p className={styles.job}>front-end developer</p>
+      </p>
+      <p className="job">front-end developer</p>
     </a>
   );
 }

@@ -20,11 +20,11 @@ function MetaPanel({ content, createdTime, lastEditedTime, slug }: Props) {
     <div className="meta">
       <div data-tooltip={`Updated on ${lastEditedTime.format('YYYY-MM-DD')}`}>
         <CalendarIcon />
-        <p>{createdTime.format('YYYY-MM-DD')}</p>
+        <p className="text">{createdTime.format('YYYY-MM-DD')}</p>
       </div>
       <div>
         <ClockIcon />
-        <p>{calculateReadingTime(content)} min</p>
+        <p className="text">{calculateReadingTime(content)} min</p>
       </div>
       <div>
         <ViewIcon />

@@ -22,7 +22,14 @@ function ViewCount({ slug }: Props) {
       });
   }, []);
 
-  return <p aria-busy={isLoading}>{isLoading ? '' : viewCount}</p>;
+  return (
+    <p
+      aria-busy={isLoading}
+      className="text"
+    >
+      {isLoading ? '' : viewCount}
+    </p>
+  );
 }
 
 export default ViewCount;

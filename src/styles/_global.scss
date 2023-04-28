@@ -19,7 +19,7 @@ code {
   word-break: keep-all;
 }
 
-.header {
+header {
   display: flex;
   padding-top: 3rem;
   padding-bottom: 1rem;
@@ -30,120 +30,24 @@ code {
   }
 }
 
-.post {
-  position: relative;
-  max-width: 768px;
-  margin: auto;
+.logo {
+  .name {
+    margin-bottom: 1.5rem;
+    font-size: 3rem;
+    font-weight: 500;
+    color: #e6e7ec;
+    text-shadow: 0 3px #6598d2, 3px 0 #e06d3d, 0 -3px #c5ab48;
 
-  h1 {
-    margin-bottom: 8px;
-    font-size: 40px;
-  }
-
-  p,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  th,
-  tr,
-  li {
-    font-family: var(--font-nanum-gothic);
-  }
-
-  p {
-    font-size: 20px;
-    line-height: 30px;
-    letter-spacing: -0.003em;
-    word-break: break-all;
-    word-spacing: 2px;
-
-    @include mixins.breakpoint(sm) {
-      font-size: 22px;
-      line-height: 34px;
+    @include mixins.breakpoint(md) {
+      font-size: 4rem;
+      text-shadow: 0 4px #6598d2, 4px 0 #e06d3d, 0 -4px #c5ab48;
     }
   }
 
-  .description {
-    margin: 0;
-    font-size: 16px;
-    opacity: 0.8;
+  .job {
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #87959d;
   }
-
-  .meta {
-    display: flex;
-    gap: 24px;
-    align-items: center;
-    margin-bottom: 12px;
-    border-bottom: 1px solid #666;
-
-    div {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      margin: 0 0 8px;
-      border-bottom: none;
-
-      svg {
-        width: 1.4rem;
-        height: 1.4rem;
-        margin-right: 6px;
-        fill: #666;
-      }
-
-      p {
-        margin: 0;
-        font-family: var(--font-fira-mono);
-        font-size: 14px;
-        word-spacing: -4px;
-      }
-    }
-  }
-
-  pre {
-    position: relative;
-
-    .copy {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      width: 32px;
-      height: 32px;
-      padding: 0;
-      background: none;
-      border: 1px solid #888;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      svg {
-        fill: #888;
-      }
-    }
-
-    .copy:focus {
-      svg {
-        width: 20px;
-        height: 20px;
-        fill: #357b41;
-        transition: all 0.2s ease-in-out;
-      }
-    }
-  }
-}
-
-img,
-code {
-  border-radius: 6px;
-}
-
-code:not(.hljs) {
-  padding: 4px 6px;
-  font-size: 1rem;
-  color: #ccc;
-  background: var(--color-gray-100);
-  background-color: #314039;
 }
