@@ -1,7 +1,7 @@
 import { ImageResponse } from '@vercel/og';
 import { NextRequest } from 'next/server';
 
-export const runtime = 'experimental-edge';
+export const runtime = 'edge';
 
 const fontURL = new URL('../../../assets/fonts/fira.ttf', import.meta.url);
 
