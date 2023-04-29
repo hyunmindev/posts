@@ -12,6 +12,10 @@ interface Props {
 const PADDING_LEFT = { h2: 0, h3: 1, h4: 2 };
 
 function TableOfContents({ toc }: Props) {
+  if (toc.length === 0) {
+    return null;
+  }
+
   return (
     <Wrapper>
       <TOCPointer toc={toc} />

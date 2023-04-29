@@ -91,15 +91,14 @@
 
       svg {
         fill: #888;
+        transition: all 50ms ease-out;
       }
     }
 
     .copy:focus {
       svg {
-        width: 20px;
-        height: 20px;
-        fill: #357b41;
-        transition: all 0.2s ease-in-out;
+        fill: #53c767;
+        transform: scale(1.15);
       }
     }
   }
