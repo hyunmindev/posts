@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
-import ClientProcess from 'src/app/posts/[slug]/components/ClientProcess';
 
-import LeftPanel from '@/app/posts/[slug]/components/LeftPanel';
+import ClientProcess from '@/app/posts/[slug]/components/ClientProcess';
+import CommentPanel from '@/app/posts/[slug]/components/CommentPanel';
 import MetaPanel from '@/app/posts/[slug]/components/MetaPanel';
 import PostHeader from '@/app/posts/[slug]/components/PostHeader';
 import RightPanel from '@/app/posts/[slug]/components/RightPanel';
@@ -38,7 +38,6 @@ async function Post({ params: { slug } }: Props) {
       <PostHeader />
       <main className="container">
         <article className="post">
-          <LeftPanel slug={slug} />
           <RightPanel toc={toc} />
           <h1>{title}</h1>
           <p className="description">{description}</p>
@@ -50,6 +49,7 @@ async function Post({ params: { slug } }: Props) {
           />
           {/* eslint-disable-next-line react/no-danger */}
           <div dangerouslySetInnerHTML={{ __html: content }} />
+          <CommentPanel />
         </article>
       </main>
     </ClientProcess>
