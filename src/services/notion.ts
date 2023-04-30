@@ -11,6 +11,7 @@ import { remark } from 'remark';
 import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 
+import { MockData, withMock } from '@/configs/mock';
 import { n2m, notion } from '@/configs/notion';
 import { POST_NOTION_DATABASE_ID } from '@/constants';
 import { Database, Post, TOC } from '@/types/notion';
@@ -38,66 +39,74 @@ const processPost = (result: any): Post => {
   };
 };
 
-export const getPosts = cache(async (): Promise<Post[]> => {
-  return (
-    await notion.databases.query({
+export const getPosts = cache(
+  withMock(
+    MockData.POSTS,
+    async (): Promise<Post[]> =>
+      (
+        await notion.databases.query({
+          database_id: POST_NOTION_DATABASE_ID,
+          filter: {
+            and: [
+              { property: 'status', select: { is_not_empty: true } },
+              { property: 'slug', rich_text: { is_not_empty: true } },
+            ],
+          },
+          sorts: [{ direction: 'ascending', timestamp: 'created_time' }],
+        })
+      ).results.map(processPost)
+  )
+);
+
+export const getPost = cache(
+  withMock(MockData.POST, async (slug: string): Promise<Post> => {
+    const { results } = await notion.databases.query({
       database_id: POST_NOTION_DATABASE_ID,
-      filter: {
-        and: [
-          { property: 'status', select: { is_not_empty: true } },
-          { property: 'slug', rich_text: { is_not_empty: true } },
-        ],
-      },
-      sorts: [{ direction: 'ascending', timestamp: 'created_time' }],
-    })
-  ).results.map(processPost);
-});
+      filter: { and: [{ property: 'slug', rich_text: { equals: slug } }] },
+    });
+    const [response] = results;
+    if (!response) {
+      notFound();
+    }
+    const blocks = await n2m.pageToMarkdown(response.id);
+    const rawPost = n2m.toMarkdownString(blocks);
+    const { data, value } = await remark()
+      .use(remarkGfm)
+      .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeHighlight)
+      .use(rehypeRaw)
+      .use(rehypeTOC)
+      .use(rehypeA11y)
+      .use(rehypeImage)
+      .use(rehypeStringify)
+      .process(rawPost);
+    return {
+      content: value.toString(),
+      toc: data.toc as TOC[],
+      ...processPost(response),
+    };
+  })
+);
 
-export const getPost = cache(async (slug: string): Promise<Post> => {
-  const { results } = await notion.databases.query({
-    database_id: POST_NOTION_DATABASE_ID,
-    filter: { and: [{ property: 'slug', rich_text: { equals: slug } }] },
-  });
-  const [response] = results;
-  if (!response) {
-    notFound();
-  }
-  const blocks = await n2m.pageToMarkdown(response.id);
-  const rawPost = n2m.toMarkdownString(blocks);
-  const { data, value } = await remark()
-    .use(remarkGfm)
-    .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeHighlight)
-    .use(rehypeRaw)
-    .use(rehypeTOC)
-    .use(rehypeA11y)
-    .use(rehypeImage)
-    .use(rehypeStringify)
-    .process(rawPost);
-  return {
-    content: value.toString(),
-    toc: data.toc as TOC[],
-    ...processPost(response),
-  };
-});
-
-export const getDatabase = cache(async (): Promise<Database> => {
-  const { properties } = await notion.databases.retrieve({
-    database_id: POST_NOTION_DATABASE_ID,
-  });
-  const categories: { [key: string]: { color: string } } =
-    // @ts-ignore
-    properties.category.select.options.reduce(
+export const getDatabase = cache(
+  withMock(MockData.DATABASE, async (): Promise<Database> => {
+    const { properties } = await notion.databases.retrieve({
+      database_id: POST_NOTION_DATABASE_ID,
+    });
+    const categories: { [key: string]: { color: string } } =
       // @ts-ignore
-      (acc, { color, name }) => ({ ...acc, [name]: { color } }),
-      {}
-    );
-  const tags: { [key: string]: { color: string } } =
-    // @ts-ignore
-    properties.tags.multi_select.options.reduce(
+      properties.category.select.options.reduce(
+        // @ts-ignore
+        (acc, { color, name }) => ({ ...acc, [name]: { color } }),
+        {}
+      );
+    const tags: { [key: string]: { color: string } } =
       // @ts-ignore
-      (acc, { color, name }) => ({ ...acc, [name]: { color } }),
-      {}
-    );
-  return { categories, tags };
-});
+      properties.tags.multi_select.options.reduce(
+        // @ts-ignore
+        (acc, { color, name }) => ({ ...acc, [name]: { color } }),
+        {}
+      );
+    return { categories, tags };
+  })
+);

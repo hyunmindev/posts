@@ -68,9 +68,6 @@ const processImageNode = async (node: Element, index: number) => {
 export const rehypeImage =
   () =>
   async ({ children }: { children: Element[] }) => {
-    if (process.env.NODE_ENV === 'development') {
-      return;
-    }
     const imageNodes: Element[] = [];
     getImageNodes(children, imageNodes);
     await Promise.all(imageNodes.map(processImageNode));
