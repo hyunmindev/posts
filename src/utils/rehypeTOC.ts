@@ -1,6 +1,6 @@
 import 'server-only';
 
-import type { Element, Root, RootContent, Text } from 'hast';
+import type { Element, RootContent, Text } from 'hast';
 import type { VFile } from 'vfile';
 
 const titleTags = ['h2', 'h3', 'h4'];
@@ -43,7 +43,7 @@ const processTOC = (children: RootContent[]) =>
 
 export const rehypeTOC =
   () =>
-  ({ children }: Root, { data }: VFile) => {
+  ({ children }: { children: Element[] }, { data }: VFile) => {
     validateTOC(children);
     attachID(children);
     data.toc = processTOC(children);
