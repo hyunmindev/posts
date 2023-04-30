@@ -31,9 +31,11 @@
 
     "react/jsx-sort-props": "error",
     "react/react-in-jsx-scope": "off",
-    "react-hooks/exhaustive-deps": "off",
+    "react/require-default-props": "off",
     "react/jsx-props-no-spreading": "off",
     "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }],
+
+    "react-hooks/exhaustive-deps": "off",
 
     "import/prefer-default-export": "off",
 
