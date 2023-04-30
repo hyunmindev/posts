@@ -1,9 +1,8 @@
 import Logo from '@/app/components/Logo';
-import { join } from '@/utils';
 
 function PostHeader() {
   return (
-    <header className={join('header', 'container')}>
+    <header className={['header', 'container'].join(' ')}>
       <nav>
         <ul>
           <li>
