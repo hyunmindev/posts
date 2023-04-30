@@ -6,38 +6,65 @@ import { Post } from '@/types/notion';
 
 const posts: Post[] = [
   {
-    author: '정현민',
     category: 'CSS',
     createdTime: dayjs('2023-02-09T02:29:00.000Z'),
-    description: '활용할지를 알아보자. 그리고 Key Props를 알아보자.',
-    id: 'ce0b3157-5784-4fba-a73b-0e41acfde946',
     lastEditedTime: dayjs('2023-04-29T09:54:00.000Z'),
-    slug: 'hello-world1',
+    slug: 'slug1',
     tags: ['react', 'javascript', 'front-end'],
     title:
-      '타이틀이 얼마나 길어도 될지에 대해서 알아보자. 1 2 3 하나 둘 셋 넷. 길이가 계속해서 늘어나는 것을 확인할 수 있다.',
+      '이 헌법공포 당시의 국회의원의 임기는 제1항에 의한 국회의 최초의 집회일 전일까지로 한다. 이 헌법시행 당시의 대법원장과 대법원판사가 아닌 법관은 제1항 단서의 규정에 불구하고 이 헌법에 의하여 임명된 것으로 본다.',
   },
   {
-    author: '정현민',
-    category: 'FE',
+    category: 'CSS',
     createdTime: dayjs('2023-02-09T02:29:00.000Z'),
-    description: 'React에서는 ‘Children’라는 내장 객체를 지원한다.',
-    id: 'ce0b3157-5784-4fba-a73b-0e41acfde946',
     lastEditedTime: dayjs('2023-04-29T09:54:00.000Z'),
-    slug: 'hello-world2',
+    slug: 'slug2',
     tags: ['react', 'javascript', 'front-end'],
-    title: 'English와 한글의 혼합 타이틀에서 문제가 발생하지 않는가?',
+    title:
+      'the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s.',
   },
   {
-    author: '정현민',
     category: 'FE',
     createdTime: dayjs('2023-02-09T02:29:00.000Z'),
-    description: 'React에서는 ‘Children’라는 내장 객체를 지원한다.',
-    id: 'ce0b3157-5784-4fba-a73b-0e41acfde946',
     lastEditedTime: dayjs('2023-04-29T09:54:00.000Z'),
-    slug: 'hello-world2',
+    slug: 'slug3',
     tags: ['react', 'javascript', 'front-end'],
-    title: 'English와 한글의 혼합 타이틀에서 문제가 발생하지 않는가?',
+    title: 'English와 한글 한글과 Language Mix Test를 Run하다.',
+  },
+  {
+    category: 'JS',
+    createdTime: dayjs('2023-02-09T02:29:00.000Z'),
+    lastEditedTime: dayjs('2023-04-29T09:54:00.000Z'),
+    slug: 'slug4',
+    tags: ['react', 'javascript', 'front-end'],
+    title: '%$#^&*()_+{}":?><"`',
+  },
+  {
+    category: 'JS',
+    createdTime: dayjs('2023-02-09T02:29:00.000Z'),
+    lastEditedTime: dayjs('2023-04-29T09:54:00.000Z'),
+    slug: 'slug5',
+    tags: ['react', 'javascript', 'front-end'],
+    title:
+      '가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하',
+  },
+  {
+    category: 'JS',
+    createdTime: dayjs('2023-02-09T02:29:00.000Z'),
+    lastEditedTime: dayjs('2023-04-29T09:54:00.000Z'),
+    slug: 'slug6',
+    tags: ['react', 'javascript', 'front-end'],
+    title:
+      '🎳🏂🌁🌉🌋🌌🌏🌑🌓🌔🌕🌛🌠🌰🍏🌱🌼🌽🌿🍄🍇🍈🍌🍍🍑🍒🍩🍕🍖🍗🍠🍤🍥🍨🍪🍫🍬🍭🍮🍯🍷🍹🎊🎋🎠🎣🎭🎮🎲🎴🎹🎻',
+  },
+  {
+    category: 'JS',
+    createdTime: dayjs('2023-02-09T02:29:00.000Z'),
+    lastEditedTime: dayjs('2023-04-29T09:54:00.000Z'),
+    slug: 'slug7',
+    tags: ['react', 'javascript', 'front-end'],
+    title:
+      '1234567890123456789012345678901234567890123456789012345678901234567890123456789012345',
   },
 ];
 

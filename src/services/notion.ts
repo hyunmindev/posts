@@ -16,22 +16,21 @@ import { n2m, notion } from '@/configs/notion';
 import { POST_NOTION_DATABASE_ID } from '@/constants';
 import { Database, Post, TOC } from '@/types/notion';
 import { rehypeA11y } from '@/utils/rehypeA11y';
+import { rehypeBreakLine } from '@/utils/rehypeBreakLine';
 import { rehypeImage } from '@/utils/rehypeImage';
 import { rehypeTOC } from '@/utils/rehypeTOC';
 
 const processPost = (result: any): Post => {
-  const { cover, createdTime, id, lastEditedTime, properties } = camelcaseKeys(
+  const { cover, createdTime, lastEditedTime, properties } = camelcaseKeys(
     result,
     { deep: true }
   );
-  const { author, category, description, slug, tags, title } = properties;
+  const { category, description, slug, tags, title } = properties;
   return {
-    author: author.people[0]?.name ?? null,
     category: category.select.name,
     cover: cover?.external.url ?? null,
     createdTime: dayjs(createdTime),
     description: description.richText[0]?.plainText ?? null,
-    id,
     lastEditedTime: dayjs(lastEditedTime),
     slug: slug.richText[0].plainText,
     tags: tags.multiSelect.map((tag: { name: string }) => tag.name),
@@ -73,6 +72,7 @@ export const getPost = cache(
     const { data, value } = await remark()
       .use(remarkGfm)
       .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeBreakLine)
       .use(rehypeHighlight)
       .use(rehypeRaw)
       .use(rehypeTOC)

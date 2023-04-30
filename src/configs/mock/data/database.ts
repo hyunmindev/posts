@@ -10,6 +10,9 @@ const database: Database = {
     FE: {
       color: 'blue',
     },
+    JS: {
+      color: 'green',
+    },
   },
   tags: {},
 };
