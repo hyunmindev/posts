@@ -7,7 +7,7 @@ export interface Post {
   cover?: string;
   createdTime: Dayjs;
   description?: string;
-  id: number;
+  id: string;
   lastEditedTime: Dayjs;
   slug: string;
   tags: string[];
