@@ -6,6 +6,7 @@ import {
   DEFAULT_METADATA,
   EMAIL,
   NAME,
+  USERNAME,
 } from '@/constants/meta';
 import { Post } from '@/types/notion';
 
@@ -35,7 +36,7 @@ export const getMetadata = (post: Post): Metadata => {
       description,
       emails: [EMAIL],
       images: {
-        alt: BLOG_TITLE,
+        alt: title,
         height: 630,
         type: 'image/png',
         url: `${BLOG_URL}/api/og?title=${title}`,
@@ -52,6 +53,19 @@ export const getMetadata = (post: Post): Metadata => {
       url,
     },
     title,
+    twitter: {
+      card: 'summary_large_image',
+      creator: USERNAME,
+      description,
+      images: {
+        alt: title,
+        height: 630,
+        type: 'image/png',
+        url: `${BLOG_URL}/api/og?title=${title}`,
+      },
+      site: BLOG_TITLE,
+      title,
+    },
   };
 };
 
