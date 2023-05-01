@@ -29,6 +29,7 @@
     "typescript-sort-keys/interface": "error",
     "typescript-sort-keys/string-enum": "error",
 
+    "react/no-danger": "off",
     "react/jsx-sort-props": "error",
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
