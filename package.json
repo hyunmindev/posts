@@ -69,6 +69,7 @@
     "@types/styled-components": "^5.1.26",
     "@types/uuid": "^9.0.1",
     "sass": "^1.62.1",
+    "schema-dts": "^1.1.2",
     "typescript": "^5.0.4"
   }
 }

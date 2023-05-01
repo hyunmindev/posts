@@ -6,7 +6,7 @@ import MetaPanel from '@/app/posts/[slug]/components/MetaPanel';
 import PostHeader from '@/app/posts/[slug]/components/PostHeader';
 import RightPanel from '@/app/posts/[slug]/components/RightPanel';
 import { getPost, getPosts } from '@/services/notion';
-import { getMetadata } from '@/utils';
+import { getLD, getMetadata } from '@/utils/seo';
 
 interface Props {
   params: { slug: string };
@@ -24,6 +24,7 @@ export async function generateStaticParams() {
 
 async function Post({ params: { slug } }: Props) {
   const post = await getPost(slug);
+  const ld = getLD(post);
   const {
     content = '',
     createdTime,
@@ -35,6 +36,10 @@ async function Post({ params: { slug } }: Props) {
 
   return (
     <ClientProcess slug={slug}>
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
+        type="application/ld+json"
+      />
       <PostHeader />
       <main className="container">
         <article className="post">
@@ -47,7 +52,6 @@ async function Post({ params: { slug } }: Props) {
             lastEditedTime={lastEditedTime}
             slug={slug}
           />
-          {/* eslint-disable-next-line react/no-danger */}
           <div dangerouslySetInnerHTML={{ __html: content }} />
           <CommentPanel />
         </article>
