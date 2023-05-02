@@ -77,29 +77,42 @@
 
     .copy {
       position: absolute;
-      top: 8px;
-      right: 8px;
+      top: 12px;
+      right: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       width: 32px;
       height: 32px;
       padding: 0;
-      background: none;
-      border: 1px solid #888;
+      background-color: transparent;
+      border: 1px solid #777;
       border-radius: 6px;
+      transition: all 48ms ease-out;
+      transform: scale(0);
 
       svg {
-        fill: #888;
-        transition: all 50ms ease-out;
+        width: 20px;
+        height: 20px;
+        fill: #777;
+      }
+
+      &:hover {
+        transform: scale(1);
       }
     }
 
-    .copy:focus {
+    .copied {
+      border: 1px solid #53c767;
+
       svg {
         fill: #53c767;
-        transform: scale(1.15);
+        transform: scale(1.1);
       }
+    }
+
+    code:hover + .copy {
+      transform: scale(1);
     }
   }
 
@@ -109,6 +122,7 @@
   }
 
   code {
+    font-size: 1.1rem;
     line-height: 28px;
   }
 
