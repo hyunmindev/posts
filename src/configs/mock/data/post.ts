@@ -29,7 +29,7 @@ const post: Post = {
   cover: 'https://www.notion.so/images/page-cover/met_georges_seurat_1884.jpg',
   createdTime: dayjs('2021-01-01'),
   description:
-    'React에서는 ‘Children’라는 내장 객체를 지원한다. 이 객체를 어떻게 활용할지를 알아보자. 그리고 Key Props를 알아보자.',
+    '역사를 가는 설레는 구하지 보는 그들은 사람은 군영과 인생에 부패뿐이다. 인생의 따뜻한 있음으로써 같지 부패뿐이다. 그와 피는 얼마나 꽃이 뿐이다. 꽃이 없으면 같이, 밥을 보는 얼마나 약동하다. 인생을 장식하는 같이, 피고, 곳으로 것은 피가 돋고, 약동하다.',
   lastEditedTime: dayjs('2021-01-01'),
   slug: 'hello-world',
   tags: ['react', 'javascript', 'front-end'],

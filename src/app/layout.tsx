@@ -6,7 +6,7 @@ import { PropsWithChildren } from 'react';
 import GlobalFooter from '@/app/components/GlobalFooter';
 import GoogleAnalytics from '@/app/components/GoogleAnalytics';
 import StyledComponentsProvider from '@/app/components/StyledComponentProvider';
-import { firaMono, nanumGothic } from '@/styles/font';
+import { firaMono } from '@/styles/font';
 
 function RootLayout({ children }: PropsWithChildren) {
   return (
@@ -16,7 +16,7 @@ function RootLayout({ children }: PropsWithChildren) {
     >
       <GoogleAnalytics />
       <Analytics debug={false} />
-      <body className={[nanumGothic.variable, firaMono.variable].join(' ')}>
+      <body className={firaMono.variable}>
         <StyledComponentsProvider>{children}</StyledComponentsProvider>
         <GlobalFooter />
       </body>
