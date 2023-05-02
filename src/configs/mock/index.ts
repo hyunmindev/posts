@@ -16,13 +16,13 @@ const mockData = {
   [MockData.DATABASE]: database,
 };
 
-const isEnvDevelopment = process.env.NODE_ENV === 'development';
+const isDevelopmentEnv = process.env.NODE_ENV === 'development';
 
 export const withMock = <T, Args extends any[]>(
   key: MockData,
   fn: (...args: Args) => Promise<T>
 ): ((...args: Args) => Promise<T>) => {
-  if (isEnvDevelopment) {
+  if (isDevelopmentEnv) {
     return async () => mockData[key] as T;
   }
   return fn;
