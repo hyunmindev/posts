@@ -5,12 +5,12 @@ import {
   ScrollUpIcon,
 } from '@/app/posts/[slug]/components/Icons';
 
-import { Button, Wrapper } from './styles';
+// import { Button, Wrapper } from './styles';
 
 function ScrollButtons() {
   return (
-    <Wrapper>
-      <Button
+    <div>
+      <button
         aria-label="scroll up to top"
         onClick={() =>
           window.scrollTo({
@@ -21,8 +21,8 @@ function ScrollButtons() {
         type="button"
       >
         <ScrollUpIcon />
-      </Button>
-      <Button
+      </button>
+      <button
         aria-label="scroll down to bottom"
         onClick={() =>
           window.scrollTo({
@@ -33,8 +33,8 @@ function ScrollButtons() {
         type="button"
       >
         <ScrollDownIcon />
-      </Button>
-    </Wrapper>
+      </button>
+    </div>
   );
 }
 

@@ -5,8 +5,6 @@ import { useEffect, useState } from 'react';
 import { useHashEffect } from '@/hooks/useHash';
 import { TOC } from '@/types/notion';
 
-import { Pointer } from './styles';
-
 interface Props {
   toc: TOC[];
 }
@@ -82,7 +80,12 @@ function TOCPointer({ toc }: Props) {
     );
   });
 
-  return <Pointer translateY={currentSectionIndex * 1.6 + 1} />;
+  return (
+    <div
+      className=""
+      // translateY={currentSectionIndex * 1.6 + 1}
+    />
+  );
 }
 
 export default TOCPointer;

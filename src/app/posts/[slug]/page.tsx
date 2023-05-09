@@ -41,11 +41,10 @@ async function Post({ params: { slug } }: Props) {
         type="application/ld+json"
       />
       <PostHeader />
-      <main className="container">
-        <article className="post">
-          <RightPanel toc={toc} />
-          <h1>{title}</h1>
-          <p className="description">{description}</p>
+      <main className="grid grow gap-4 xl:grid-cols-[160px_minmax(0,768px)_160px]">
+        <article className="col-start-2 max-w-[768px]">
+          <h1 className="stroke-stone-900 text-5xl font-bold">{title}</h1>
+          <p className="text-stone-400">{description}</p>
           <MetaPanel
             content={content}
             createdTime={createdTime}
@@ -55,6 +54,7 @@ async function Post({ params: { slug } }: Props) {
           <div dangerouslySetInnerHTML={{ __html: content }} />
           <CommentPanel />
         </article>
+        <RightPanel toc={toc} />
       </main>
     </ClientProcess>
   );

@@ -1,7 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import { useEffect, useRef, useState } from 'react';
 
 import { getIsViewed } from '@/utils/localStorage';
 
@@ -9,28 +8,26 @@ interface Props {
   slug: string;
 }
 
-const Pointer = styled.div`
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 6px;
-  height: 6px;
-  background-color: #9e7a11;
-  border-radius: 3px;
-`;
-
 function ViewPointer({ slug }: Props) {
   const [isViewed, setIsViewed] = useState(true);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsViewed(getIsViewed(slug));
   }, []);
 
-  if (isViewed) {
-    return null;
-  }
+  useEffect(() => {
+    if (ref.current && !isViewed) {
+      ref.current.classList.remove('opacity-0');
+    }
+  }, [isViewed]);
 
-  return <Pointer />;
+  return (
+    <div
+      ref={ref}
+      className="absolute right-4 top-4 h-2 w-2 rounded-sm bg-amber-500 opacity-0 transition-opacity duration-1000"
+    />
+  );
 }
 
 export default ViewPointer;

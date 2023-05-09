@@ -2,7 +2,7 @@ import Logo from '@/app/components/Logo';
 
 function PostHeader() {
   return (
-    <header className={['header', 'container'].join(' ')}>
+    <header className="w-screen max-w-screen-xl p-8">
       <nav>
         <ul>
           <li>

@@ -5,7 +5,7 @@ export const EMAIL = 'jung@hyunmin.dev';
 export const BLOG_URL = 'https://blog.hyunmin.dev';
 export const USERNAME = 'hyunmindev';
 export const GITHUB_URL = 'https://github.com/hyunmindev';
-export const BLOG_TITLE = 'Hyunmin Jung 개발 블로그';
+export const BLOG_TITLE = '개발자 정현민 기술 블로그';
 export const BLOG_DESCRIPTION =
   '프론트엔드 개발자 정현민의 기술 블로그입니다. 웹 개발에 관한 이야기, 프론트엔드 트렌드, 해결했던 문제, 공부한 내용을 기록합니다.';
 
@@ -14,6 +14,7 @@ export const DEFAULT_METADATA: Metadata = {
   colorScheme: 'dark',
   creator: NAME,
   description: BLOG_DESCRIPTION,
+  metadataBase: new URL(BLOG_URL),
   openGraph: {
     authors: NAME,
     countryName: 'Korea',
@@ -24,7 +25,7 @@ export const DEFAULT_METADATA: Metadata = {
       alt: BLOG_TITLE,
       height: 630,
       type: 'image/png',
-      url: `${BLOG_URL}/api/og`,
+      url: '/api/og',
       width: 1200,
     },
     locale: 'ko_KR',
@@ -44,7 +45,7 @@ export const DEFAULT_METADATA: Metadata = {
       alt: BLOG_TITLE,
       height: 630,
       type: 'image/png',
-      url: `${BLOG_URL}/api/og`,
+      url: '/api/og',
     },
     site: NAME,
     title: BLOG_TITLE,

@@ -23,7 +23,7 @@ export const getMetadata = (post: Post): Metadata => {
     tags,
     title,
   } = post;
-  const url = `${BLOG_URL}/${slug}`;
+  const url = `/${slug}`;
   const publishedTime = createdTime.toISOString();
   const modifiedTime = lastEditedTime.toISOString();
   return {
@@ -42,7 +42,7 @@ export const getMetadata = (post: Post): Metadata => {
         alt: title,
         height: 630,
         type: 'image/png',
-        url: `${BLOG_URL}/api/og?title=${title}`,
+        url: `/api/og?title=${title}`,
         width: 1200,
       },
       locale: 'ko_KR',
@@ -64,7 +64,7 @@ export const getMetadata = (post: Post): Metadata => {
         alt: title,
         height: 630,
         type: 'image/png',
-        url: `${BLOG_URL}/api/og?title=${title}`,
+        url: `/api/og?title=${title}`,
       },
       site: BLOG_TITLE,
       title,

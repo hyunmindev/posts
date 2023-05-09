@@ -33,7 +33,7 @@ const post: Post = {
   lastEditedTime: dayjs('2021-01-01'),
   slug: 'hello-world',
   tags: ['react', 'javascript', 'front-end'],
-  title: 'Test Post와 테스트 포스트',
+  title: 'key Props와 React.Children',
   toc: [
     { id: '시작', tagName: 'h2', text: '시작' },
     { id: '문단-테스트', tagName: 'h2', text: '문단 테스트' },

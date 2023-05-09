@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .text-shadow-3 {
+    text-shadow: 0 4px #6598d2, 4px 0 #e06d3d, 0 -4px #c5ab48;
+  }
+  .text-shadow-4 {
+    text-shadow: 0 4px #6598d2, 4px 0 #e06d3d, 0 -4px #c5ab48;
+  }
+}

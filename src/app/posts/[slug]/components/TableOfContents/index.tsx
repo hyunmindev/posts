@@ -3,8 +3,6 @@
 import TOCPointer from '@/app/posts/[slug]/components/TOCPointer';
 import type { TOC } from '@/types/notion';
 
-import { Item, List, Wrapper } from './styles';
-
 interface Props {
   toc: TOC[];
 }
@@ -17,19 +15,19 @@ function TableOfContents({ toc }: Props) {
   }
 
   return (
-    <Wrapper>
+    <div className="sticky top-20">
       <TOCPointer toc={toc} />
-      <List>
+      <ul>
         {toc.map(({ id, tagName, text }) => (
-          <Item
+          <li
             key={id}
             paddingLeft={PADDING_LEFT[tagName]}
           >
             <a href={`#${id}`}>{text}</a>
-          </Item>
+          </li>
         ))}
-      </List>
-    </Wrapper>
+      </ul>
+    </div>
   );
 }
 
