@@ -17,18 +17,21 @@ interface Props {
 
 function MetaPanel({ content, createdTime, lastEditedTime, slug }: Props) {
   return (
-    <div className="meta">
-      <div data-tooltip={`Updated on ${lastEditedTime.format('YYYY-MM-DD')}`}>
-        <CalendarIcon />
-        <p className="text">{createdTime.format('YYYY-MM-DD')}</p>
+    <div className="mb-8 mt-2 flex gap-8 border-b-2 border-stone-600 fill-stone-400 pb-3 pt-1 text-sm text-stone-400">
+      <div
+        className="flex items-center justify-end gap-2"
+        data-tooltip={`Updated on ${lastEditedTime.format('YYYY-MM-DD')}`}
+      >
+        <CalendarIcon className="w-6" />
+        <p>{createdTime.format('YYYY-MM-DD')}</p>
       </div>
-      <div>
-        <ClockIcon />
-        <p className="text">{calculateReadingTime(content)} min</p>
-      </div>
-      <div>
-        <ViewIcon />
+      <div className="flex items-center justify-end gap-2">
+        <ViewIcon className="w-6" />
         <ViewCount slug={slug} />
+      </div>
+      <div className="flex items-center justify-end gap-2">
+        <ClockIcon className="w-6" />
+        <p>{calculateReadingTime(content)} min</p>
       </div>
     </div>
   );

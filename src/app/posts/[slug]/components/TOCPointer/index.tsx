@@ -82,8 +82,10 @@ function TOCPointer({ toc }: Props) {
 
   return (
     <div
-      className=""
-      // translateY={currentSectionIndex * 1.6 + 1}
+      className="absolute left-0 border-y-8 border-l-8 border-y-transparent border-l-stone-600 border-r-transparent transition-transform"
+      style={{
+        transform: `translateY(${currentSectionIndex * 1.74 + 0.25}rem)`,
+      }}
     />
   );
 }
