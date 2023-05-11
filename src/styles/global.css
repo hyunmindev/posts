@@ -1,10 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+@import "tailwindcss/base";
+@import './post.scss';
+@import './highlight.scss';
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
 
 @layer components {
   .text-shadow-3 {
-    text-shadow: 0 4px #6598d2, 4px 0 #e06d3d, 0 -4px #c5ab48;
+    text-shadow: 0 3px #6598d2, 3px 0 #e06d3d, 0 -3px #c5ab48;
   }
   .text-shadow-4 {
     text-shadow: 0 4px #6598d2, 4px 0 #e06d3d, 0 -4px #c5ab48;

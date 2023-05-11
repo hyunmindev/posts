@@ -6,7 +6,7 @@ import { Post } from '@/types/notion';
 
 const post: Post = {
   category: 'CSS',
-  content: `<h2 id="시작">시작</h2><p>코드블럭 위의 텍스트.</p><p><code>code</code></p><pre><code class="hljs language-typescript"><span class="hljs-keyword">const</span> { results } = <span class="hljs-keyword">await</span> notion.<span class="hljs-property">databases</span>.<span class="hljs-title function_">query</span>({
+  content: `<h2 id="시작">시작</h2><p>코드<code>블럭</code> 위의 텍스트. <code>블럭</code> 테스트</p><p><code>code</code></p><pre><code class="hljs language-typescript"><span class="hljs-keyword">const</span> { results } = <span class="hljs-keyword">await</span> notion.<span class="hljs-property">databases</span>.<span class="hljs-title function_">query</span>({
   <span class="hljs-attr">database_id</span>: <span class="hljs-variable constant_">POST_NOTION_DATABASE_ID</span>,
   <span class="hljs-attr">filter</span>: { 
     <span class="hljs-attr">and</span>: [{ <span class="hljs-attr">property</span>: <span class="hljs-string">'slug'</span>, <span class="hljs-attr">rich_text</span>: { <span class="hljs-attr">equals</span>: slug } }] 
