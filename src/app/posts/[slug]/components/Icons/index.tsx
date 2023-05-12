@@ -1,7 +1,11 @@
-export function ScrollUpIcon() {
+interface Props {
+  className?: string;
+}
+
+export function ScrollUpIcon({ className }: Props) {
   return (
     <svg
-      className="icon"
+      className={className}
       viewBox="0 96 960 960"
     >
       <path d="M450 896V370L202 618l-42-42 320-320 320 320-42 42-248-248v526h-60Z" />
@@ -9,10 +13,10 @@ export function ScrollUpIcon() {
   );
 }
 
-export function ScrollDownIcon() {
+export function ScrollDownIcon({ className }: Props) {
   return (
     <svg
-      className="icon"
+      className={className}
       viewBox="0 96 960 960"
     >
       <path d="M480 896 160 576l42-42 248 248V256h60v526l248-248 42 42-320 320Z" />
@@ -20,10 +24,10 @@ export function ScrollDownIcon() {
   );
 }
 
-export function CalendarIcon() {
+export function CalendarIcon({ className }: Props) {
   return (
     <svg
-      className="icon"
+      className={className}
       viewBox="0 96 960 960"
     >
       <path d="M180 976q-24 0-42-18t-18-42V296q0-24 18-42t42-18h65v-60h65v60h340v-60h65v60h65q24 0 42 18t18 42v620q0 24-18 42t-42 18H180Zm0-60h600V486H180v430Zm0-490h600V296H180v130Zm0 0V296v130Zm300 230q-17 0-28.5-11.5T440 616q0-17 11.5-28.5T480 576q17 0 28.5 11.5T520 616q0 17-11.5 28.5T480 656Zm-160 0q-17 0-28.5-11.5T280 616q0-17 11.5-28.5T320 576q17 0 28.5 11.5T360 616q0 17-11.5 28.5T320 656Zm320 0q-17 0-28.5-11.5T600 616q0-17 11.5-28.5T640 576q17 0 28.5 11.5T680 616q0 17-11.5 28.5T640 656ZM480 816q-17 0-28.5-11.5T440 776q0-17 11.5-28.5T480 736q17 0 28.5 11.5T520 776q0 17-11.5 28.5T480 816Zm-160 0q-17 0-28.5-11.5T280 776q0-17 11.5-28.5T320 736q17 0 28.5 11.5T360 776q0 17-11.5 28.5T320 816Zm320 0q-17 0-28.5-11.5T600 776q0-17 11.5-28.5T640 736q17 0 28.5 11.5T680 776q0 17-11.5 28.5T640 816Z" />
@@ -31,10 +35,10 @@ export function CalendarIcon() {
   );
 }
 
-export function ClockIcon() {
+export function ClockIcon({ className }: Props) {
   return (
     <svg
-      className="icon"
+      className={className}
       viewBox="0 96 960 960"
     >
       <path d="M360 196v-60h240v60H360Zm90 447h60V413h-60v230Zm30 332q-74 0-139.5-28.5T226 869q-49-49-77.5-114.5T120 615q0-74 28.5-139.5T226 361q49-49 114.5-77.5T480 255q67 0 126 22.5T711 340l51-51 42 42-51 51q36 40 61.5 97T840 615q0 74-28.5 139.5T734 869q-49 49-114.5 77.5T480 975Zm0-60q125 0 212.5-87.5T780 615q0-125-87.5-212.5T480 315q-125 0-212.5 87.5T180 615q0 125 87.5 212.5T480 915Zm0-299Z" />
@@ -42,10 +46,10 @@ export function ClockIcon() {
   );
 }
 
-export function ViewIcon() {
+export function ViewIcon({ className }: Props) {
   return (
     <svg
-      className="icon"
+      className={className}
       viewBox="0 96 960 960"
     >
       <path d="M480.118 726Q551 726 600.5 676.382q49.5-49.617 49.5-120.5Q650 485 600.382 435.5q-49.617-49.5-120.5-49.5Q409 386 359.5 435.618q-49.5 49.617-49.5 120.5Q310 627 359.618 676.5q49.617 49.5 120.5 49.5Zm-.353-58Q433 668 400.5 635.265q-32.5-32.736-32.5-79.5Q368 509 400.735 476.5q32.736-32.5 79.5-32.5Q527 444 559.5 476.735q32.5 32.736 32.5 79.5Q592 603 559.265 635.5q-32.736 32.5-79.5 32.5ZM480 856q-146 0-264-83T40 556q58-134 176-217t264-83q146 0 264 83t176 217q-58 134-176 217t-264 83Zm0-300Zm-.169 240Q601 796 702.5 730.5 804 665 857 556q-53-109-154.331-174.5-101.332-65.5-222.5-65.5Q359 316 257.5 381.5 156 447 102 556q54 109 155.331 174.5 101.332 65.5 222.5 65.5Z" />

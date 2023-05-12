@@ -5,8 +5,6 @@ import { useEffect, useState } from 'react';
 import { useHashEffect } from '@/hooks/useHash';
 import { TOC } from '@/types/notion';
 
-import { Pointer } from './styles';
-
 interface Props {
   toc: TOC[];
 }
@@ -25,13 +23,11 @@ function TOCPointer({ toc }: Props) {
         const hiddenEntries = entries
           .filter(({ intersectionRatio }) => intersectionRatio === 0)
           .map(({ target }) => target.id);
-        setVisibleIDs((prevState) => {
-          return [
-            ...prevState
-              .filter((id) => !hiddenEntries.includes(id))
-              .concat(visibleEntries),
-          ];
-        });
+        setVisibleIDs((prevState) => [
+          ...prevState
+            .filter((id) => !hiddenEntries.includes(id))
+            .concat(visibleEntries),
+        ]);
       },
       { rootMargin: '-10% -10%', threshold: [0, 0.5, 1] }
     );
@@ -78,11 +74,18 @@ function TOCPointer({ toc }: Props) {
     }
     setTimeout(
       () => setCurrentSectionIndex(toc.findIndex(({ id }) => hash === id)),
-      25
+      50
     );
   });
 
-  return <Pointer translateY={currentSectionIndex * 1.6 + 1} />;
+  return (
+    <div
+      className="absolute left-0 border-y-8 border-l-8 border-y-transparent border-l-stone-600 border-r-transparent transition-transform"
+      style={{
+        transform: `translateY(${currentSectionIndex * 1.74 + 0.25}rem)`,
+      }}
+    />
+  );
 }
 
 export default TOCPointer;

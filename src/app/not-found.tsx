@@ -4,7 +4,7 @@ function NotFound() {
   return (
     <>
       <IndexHeader />
-      <main className="container">
+      <main>
         <h1>Page Not Found</h1>
         <a href="/">홈으로 가기</a>
       </main>

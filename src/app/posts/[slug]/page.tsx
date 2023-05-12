@@ -41,20 +41,23 @@ async function Post({ params: { slug } }: Props) {
         type="application/ld+json"
       />
       <PostHeader />
-      <main className="container">
-        <article className="post">
-          <RightPanel toc={toc} />
-          <h1>{title}</h1>
-          <p className="description">{description}</p>
+      <main className="grid grow xl:grid-cols-[160px_minmax(0,768px)_160px] xl:gap-4">
+        <article className="col-start-2 max-w-[768px] p-4">
+          <h1 className="mb-4 text-5xl font-bold text-stone-200">{title}</h1>
+          <p className="text-stone-400">{description}</p>
           <MetaPanel
             content={content}
             createdTime={createdTime}
             lastEditedTime={lastEditedTime}
             slug={slug}
           />
-          <div dangerouslySetInnerHTML={{ __html: content }} />
+          <div
+            dangerouslySetInnerHTML={{ __html: content }}
+            id="post"
+          />
           <CommentPanel />
         </article>
+        <RightPanel toc={toc} />
       </main>
     </ClientProcess>
   );

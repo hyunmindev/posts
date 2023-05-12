@@ -1,14 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface Props {
   slug: string;
 }
 
 function ViewCount({ slug }: Props) {
-  const [isLoading, setIsLoading] = useState(true);
   const [viewCount, setViewCount] = useState(0);
+  const ref = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     fetch(`/api/views?slug=${slug}`, {
@@ -16,20 +16,27 @@ function ViewCount({ slug }: Props) {
       next: { revalidate: 120 },
     })
       .then((res) => res.json())
-      .then((data) => {
-        setViewCount(data);
-        setIsLoading(false);
-      });
+      .then(setViewCount);
   }, []);
 
-  return (
-    <p
-      aria-busy={isLoading}
-      className="text"
-    >
-      {isLoading ? '' : viewCount}
-    </p>
-  );
+  useEffect(() => {
+    let count = 0;
+    if (viewCount === 0) {
+      return () => {};
+    }
+    const timer = setInterval(() => {
+      if (count < viewCount) {
+        count += Math.ceil(viewCount / 10);
+        ref.current!.innerText = count.toLocaleString();
+      } else {
+        ref.current!.innerText = viewCount.toLocaleString();
+        clearInterval(timer);
+      }
+    }, 50);
+    return () => clearInterval(timer);
+  }, [viewCount]);
+
+  return <p ref={ref}>0</p>;
 }
 
 export default ViewCount;

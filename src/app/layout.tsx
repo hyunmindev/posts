@@ -1,23 +1,22 @@
-import '@/styles/index.scss';
+import '@/styles/global.css';
 
 import { Analytics } from '@vercel/analytics/react';
 import { PropsWithChildren } from 'react';
 
 import GlobalFooter from '@/app/components/GlobalFooter';
 import GoogleAnalytics from '@/app/components/GoogleAnalytics';
-import StyledComponentsProvider from '@/app/components/StyledComponentProvider';
 import { firaMono } from '@/styles/font';
 
 function RootLayout({ children }: PropsWithChildren) {
   return (
     <html
-      data-theme="dark"
+      className={firaMono.variable}
       lang="ko"
     >
       <GoogleAnalytics />
       <Analytics debug={false} />
-      <body className={firaMono.variable}>
-        <StyledComponentsProvider>{children}</StyledComponentsProvider>
+      <body className="flex min-h-screen flex-col items-center bg-background font-monospace selection:bg-lime-900 selection:text-stone-50">
+        {children}
         <GlobalFooter />
       </body>
     </html>

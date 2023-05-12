@@ -1,11 +1,10 @@
 'use client';
 
+import TableOfContents from 'src/app/posts/[slug]/components/TableOfContents';
+
 import ScrollButtons from '@/app/posts/[slug]/components/ScrollButtons';
-import TableOfContents from '@/app/posts/[slug]/components/TableOfContents';
 import { useBreakpoint } from '@/hooks/useBreakpoint';
 import { TOC } from '@/types/notion';
-
-import { Wrapper } from './styles';
 
 interface Props {
   toc: TOC[];
@@ -19,10 +18,10 @@ function RightPanel({ toc }: Props) {
   }
 
   return (
-    <Wrapper>
+    <div className="col-start-3">
       <TableOfContents toc={toc} />
       <ScrollButtons />
-    </Wrapper>
+    </div>
   );
 }
 

@@ -13,8 +13,8 @@ function Index() {
   return (
     <>
       <IndexHeader />
-      <main className="container">
-        {/* FIXME: https://beta.nextjs.org/docs/data-fetching/fetching#asyncawait-in-server-components */}
+      <main className="w-screen max-w-screen-xl grow">
+        {/* FIXME: https://nextjs.org/docs/app/building-your-application/data-fetching/fetching */}
         {/* @ts-expect-error Async Server Component */}
         <PostList />
       </main>
