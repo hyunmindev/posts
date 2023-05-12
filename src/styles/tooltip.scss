@@ -1,0 +1,79 @@
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+  &::before,
+  &::after {
+    display: block;
+    z-index: 99;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    padding: 0.25rem 0.5rem;
+    overflow: hidden;
+    transform: translate(-50%, -0.25rem);
+    border-radius: 0.25rem;
+    background: theme('colors.stone.200');
+    content: attr(data-tooltip);
+    color: theme('colors.stone.800');
+    font-style: normal;
+    font-size: 0.875rem;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+  }
+  &::after {
+    padding: 0;
+    transform: translate(-50%, 0rem);
+    border-top: 0.3rem solid;
+    border-right: 0.3rem solid transparent;
+    border-left: 0.3rem solid transparent;
+    border-radius: 0;
+    background-color: transparent;
+    color: theme('colors.stone.200');
+    content: '';
+  }
+  &:focus,
+  &:hover {
+    &::before,
+    &::after {
+      opacity: 1;
+    }
+  }
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      &::before,
+      &::after {
+        animation-duration: 0.2s;
+        animation-name: tooltip-slide-top;
+      }
+      &::after {
+        animation-name: tooltip-caret-slide-top;
+      }
+    }
+  }
+  @keyframes tooltip-slide-top {
+    from {
+      transform: translate(-50%, 0.75rem);
+      opacity: 0;
+    }
+    to {
+      transform: translate(-50%, -0.25rem);
+      opacity: 1;
+    }
+  }
+  @keyframes tooltip-caret-slide-top {
+    from {
+      opacity: 0;
+    }
+    50% {
+      transform: translate(-50%, -0.25rem);
+      opacity: 0;
+    }
+    to {
+      transform: translate(-50%, 0rem);
+      opacity: 1;
+    }
+  }
+}

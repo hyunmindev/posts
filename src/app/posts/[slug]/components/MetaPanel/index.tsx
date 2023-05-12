@@ -17,7 +17,7 @@ interface Props {
 
 function MetaPanel({ content, createdTime, lastEditedTime, slug }: Props) {
   return (
-    <div className="mb-8 mt-2 flex gap-8 border-b-2 border-stone-600 fill-stone-400 pb-3 pt-1 text-sm text-stone-400">
+    <div className="my-2 flex gap-8 border-b-2 border-stone-600 fill-stone-400 pb-3 pt-1 text-sm text-stone-400">
       <div
         className="flex items-center justify-end gap-2"
         data-tooltip={`Updated on ${lastEditedTime.format('YYYY-MM-DD')}`}

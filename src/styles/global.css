@@ -2,6 +2,7 @@
 @import "tailwindcss/base";
 @import './post.scss';
 @import './highlight.scss';
+@import './tooltip.scss';
 
 @import "tailwindcss/components";
 
