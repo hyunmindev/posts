@@ -4,7 +4,7 @@ import { supabase } from '@/configs/supabase';
 
 const TABLE_NAME = 'views';
 
-export const revalidate = 600;
+export const revalidate = 60 * 30;
 
 export async function PUT(request: NextRequest) {
   const { slug, userID: id } = await request.json();

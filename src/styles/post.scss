@@ -46,6 +46,9 @@
     }
     button {
       @apply absolute right-4 top-4 h-10 w-10 rounded-md border border-stone-600 fill-stone-600 p-2 scale-0 transition-all flex justify-center items-center bg-background;
+      svg {
+        @apply w-6 h-6;
+      }
       &.copied {
         @apply border-lime-600;
         @apply fill-lime-600;
@@ -76,6 +79,22 @@
 
   img {
     @apply rounded-lg;
+  }
+
+  ul {
+    @apply py-4;
+    li {
+      @apply pb-1 font-light text-lg;
+      &.task-list-item {
+        @apply flex items-center;
+        input {
+          @apply mr-4 w-5 h-5;
+        }
+      }
+      &:not(.task-list-item) {
+        @apply list-disc list-inside;
+      }
+    }
   }
 
   code:not(.hljs) {

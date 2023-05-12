@@ -18,6 +18,7 @@ function ViewPointer({ slug }: Props) {
 
   useEffect(() => {
     if (ref.current && !isViewed) {
+      ref.current.classList.remove('invisible');
       ref.current.classList.remove('opacity-0');
     }
   }, [isViewed]);
@@ -25,7 +26,7 @@ function ViewPointer({ slug }: Props) {
   return (
     <div
       ref={ref}
-      className="absolute right-4 top-4 h-2 w-2 rounded-sm bg-amber-500 opacity-0 transition-opacity duration-1000"
+      className="invisible absolute right-4 top-4 h-2 w-2 rounded-sm bg-amber-500 opacity-0 transition-opacity duration-500"
     />
   );
 }
