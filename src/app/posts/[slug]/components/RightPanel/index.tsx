@@ -1,7 +1,8 @@
 'use client';
 
+import TableOfContents from 'src/app/posts/[slug]/components/TableOfContents';
+
 import ScrollButtons from '@/app/posts/[slug]/components/ScrollButtons';
-import TableOfContents from '@/app/posts/[slug]/components/TableOfContents';
 import { useBreakpoint } from '@/hooks/useBreakpoint';
 import { TOC } from '@/types/notion';
 

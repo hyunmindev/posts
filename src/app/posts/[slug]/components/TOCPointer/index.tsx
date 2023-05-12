@@ -23,13 +23,11 @@ function TOCPointer({ toc }: Props) {
         const hiddenEntries = entries
           .filter(({ intersectionRatio }) => intersectionRatio === 0)
           .map(({ target }) => target.id);
-        setVisibleIDs((prevState) => {
-          return [
-            ...prevState
-              .filter((id) => !hiddenEntries.includes(id))
-              .concat(visibleEntries),
-          ];
-        });
+        setVisibleIDs((prevState) => [
+          ...prevState
+            .filter((id) => !hiddenEntries.includes(id))
+            .concat(visibleEntries),
+        ]);
       },
       { rootMargin: '-10% -10%', threshold: [0, 0.5, 1] }
     );
@@ -76,7 +74,7 @@ function TOCPointer({ toc }: Props) {
     }
     setTimeout(
       () => setCurrentSectionIndex(toc.findIndex(({ id }) => hash === id)),
-      25
+      50
     );
   });
 

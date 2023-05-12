@@ -15,7 +15,7 @@ function TableOfContents({ toc }: Props) {
   }
 
   return (
-    <div className="sticky top-20 mt-8 border-l-2 border-stone-600 pl-4 text-sm text-stone-500">
+    <div className="sticky top-20 mt-8 border-l-2 border-stone-600 pl-4 text-sm text-stone-400">
       <TOCPointer toc={toc} />
       <ul>
         {toc.map(({ id, tagName, text }) => (

@@ -7,14 +7,14 @@
   h4,
   h5,
   h6,
+  li,
   th,
-  tr,
-  li {
+  td {
     font-family: 'Pretendard Variable', Pretendard, -apple-system,
       BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
       'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
       'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-    @apply text-stone-300 font-bold;
+    @apply text-stone-200 font-bold;
   }
 
   p {
@@ -40,49 +40,42 @@
   }
 
   pre {
-    @apply mb-8 m-auto rounded-lg max-w-[90vw] text-lg leading-8;
+    @apply mb-8 m-auto rounded-lg max-w-[90vw] text-lg leading-8 relative;
     code {
       @apply rounded-lg border border-stone-600 bg-neutral-800;
     }
-    .copy {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      padding: 0;
-      background-color: transparent;
-      border: 1px solid #777;
-      border-radius: 6px;
-      transition: all 50ms ease-out;
-      transform: scale(0);
-
-      svg {
-        width: 20px;
-        height: 20px;
-        fill: #777;
+    button {
+      @apply absolute right-4 top-4 h-10 w-10 rounded-md border border-stone-600 fill-stone-600 p-2 scale-0 transition-all flex justify-center items-center bg-background;
+      &.copied {
+        @apply border-lime-600;
+        @apply fill-lime-600;
       }
-
       &:hover {
-        transform: scale(1);
+        @apply scale-105;
       }
     }
+    code:hover + button {
+      @apply scale-100;
+    }
+  }
 
-    .copied {
-      border: 1px solid #53c767;
-
-      svg {
-        fill: #53c767;
-        transform: scale(1.1);
+  table {
+    @apply w-full text-lg font-thin;
+    thead {
+      @apply border-b-2 border-stone-600;
+      th {
+        @apply font-semibold py-2 px-8 text-left;
       }
     }
-
-    code:hover + .copy {
-      transform: scale(1);
+    tbody {
+      td {
+        @apply py-2 px-8 font-thin border-t border-stone-600;
+      }
     }
+  }
+
+  img {
+    @apply rounded-lg;
   }
 
   code:not(.hljs) {
