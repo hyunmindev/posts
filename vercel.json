@@ -1,7 +1,8 @@
 {
+  "installCommand": "npm ci --omit-optional",
   "crons": [
     {
-      "schedule": "* * * * *",
+      "schedule": "0 12 * * *",
       "path": "/api/cron"
     }
   ]
