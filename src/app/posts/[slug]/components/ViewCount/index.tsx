@@ -36,7 +36,14 @@ function ViewCount({ slug }: Props) {
     return () => clearInterval(timer);
   }, [viewCount]);
 
-  return <p ref={ref}>0</p>;
+  return (
+    <p
+      ref={ref}
+      className="w-6"
+    >
+      0
+    </p>
+  );
 }
 
 export default ViewCount;
