@@ -78,6 +78,10 @@ function TOCPointer({ toc }: Props) {
     );
   });
 
+  if (currentSectionIndex === -1) {
+    return null;
+  }
+
   return (
     <div
       className="absolute left-0 border-y-8 border-l-8 border-y-transparent border-l-stone-600 border-r-transparent transition-transform"

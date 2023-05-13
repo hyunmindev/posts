@@ -85,14 +85,19 @@
     @apply py-4;
     li {
       @apply pb-1 font-light text-lg;
-      &.task-list-item {
-        @apply flex items-center;
-        input {
-          @apply mr-4 w-5 h-5;
+      &.task-list-item:has(p) {
+        p {
+          @apply flex items-center m-0 py-1 font-light text-lg;
         }
+      }
+      &.task-list-item:not(:has(p)) {
+        @apply flex items-center;
       }
       &:not(.task-list-item) {
         @apply list-disc list-inside;
+      }
+      input {
+        @apply mr-4 w-5 h-5;
       }
     }
   }

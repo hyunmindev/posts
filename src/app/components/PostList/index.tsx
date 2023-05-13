@@ -15,7 +15,7 @@ async function PostList() {
       {posts.map(({ category, createdTime, slug, title }) => (
         <li
           key={slug}
-          className="ml-[-1px] mt-[-1px] h-60 w-full border border-stone-500 bg-background text-center transition-transform duration-200 hover:scale-105 md:w-1/2 lg:w-1/3 xl:w-1/4"
+          className="ml-[-1px] mt-[-1px] h-60 w-full border border-stone-500 bg-background transition-transform duration-200 hover:scale-105 md:w-1/2 lg:w-1/3 xl:w-1/4"
         >
           <Link
             className="relative flex h-full flex-col p-4 text-xs"
