@@ -47,7 +47,7 @@ export const getPosts = cache(
           database_id: POST_NOTION_DATABASE_ID,
           filter: {
             and: [
-              { property: 'status', select: { is_not_empty: true } },
+              { checkbox: { equals: true }, property: 'public' },
               { property: 'slug', rich_text: { is_not_empty: true } },
             ],
           },
@@ -79,7 +79,7 @@ export const getPost = cache(
       .use(rehypeA11y)
       .use(rehypeImage)
       .use(rehypeStringify)
-      .process(rawPost);
+      .process(rawPost.trim());
     return {
       content: value.toString(),
       toc: data.toc as TOC[],

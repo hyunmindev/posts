@@ -102,6 +102,10 @@
     }
   }
 
+  a {
+    @apply text-cyan-500 hover:underline;
+  }
+
   code:not(.hljs) {
     @apply mx-1 rounded-md bg-stone-700 px-2 py-1 font-monospace text-lg font-medium text-stone-200;
   }
