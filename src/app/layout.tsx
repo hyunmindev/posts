@@ -15,7 +15,7 @@ function RootLayout({ children }: PropsWithChildren) {
     >
       <GoogleAnalytics />
       <Analytics debug={false} />
-      <body className="flex min-h-screen flex-col items-center bg-background font-monospace selection:bg-lime-900 selection:text-stone-50">
+      <body className="flex min-h-screen flex-col items-center overscroll-none bg-background font-monospace selection:bg-lime-900 selection:text-stone-50">
         {children}
         <GlobalFooter />
       </body>

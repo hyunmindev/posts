@@ -1,6 +1,6 @@
 'use client';
 
-import { PropsWithChildren, useEffect } from 'react';
+import { PropsWithChildren, useEffect, useRef } from 'react';
 
 import { getUserID, incrementViewCount } from '@/utils/localStorage';
 
@@ -37,7 +37,39 @@ function ClientProcess({ children, slug }: PropsWithChildren<Props>) {
     });
   }, []);
 
-  return <>{children}</>;
+  const progressRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const { innerHeight, scrollY } = window;
+          const height = document.documentElement.scrollHeight;
+          const progressPercent = (scrollY / (height - innerHeight)) * 100;
+          progressRef.current!.style.transform = `scaleX(${progressPercent}%)`;
+          if (progressPercent >= 100) {
+            progressRef.current!.style.opacity = '0';
+          } else {
+            progressRef.current!.style.opacity = '1';
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    document.addEventListener('scroll', handleScroll, { passive: true });
+    return () => document.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <>
+      {children}
+      <div
+        ref={progressRef}
+        className="fixed bottom-0 w-screen origin-left scale-x-0 transform-gpu border border-stone-500 transition-opacity"
+      />
+    </>
+  );
 }
 
 export default ClientProcess;
