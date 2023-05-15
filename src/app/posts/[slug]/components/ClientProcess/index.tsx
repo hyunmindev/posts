@@ -47,11 +47,6 @@ function ClientProcess({ children, slug }: PropsWithChildren<Props>) {
           const height = document.documentElement.scrollHeight;
           const progressPercent = (scrollY / (height - innerHeight)) * 100;
           progressRef.current!.style.transform = `scaleX(${progressPercent}%)`;
-          if (progressPercent >= 100) {
-            progressRef.current!.style.opacity = '0';
-          } else {
-            progressRef.current!.style.opacity = '1';
-          }
           ticking = false;
         });
         ticking = true;

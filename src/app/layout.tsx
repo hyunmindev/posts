@@ -10,7 +10,7 @@ import { firaMono } from '@/styles/font';
 function RootLayout({ children }: PropsWithChildren) {
   return (
     <html
-      className={firaMono.variable}
+      className={`${firaMono.variable} overscroll-none`}
       lang="ko"
     >
       <GoogleAnalytics />
