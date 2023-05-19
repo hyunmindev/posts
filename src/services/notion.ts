@@ -47,8 +47,10 @@ export const getPosts = cache(
           database_id: POST_NOTION_DATABASE_ID,
           filter: {
             and: [
+              { property: 'title', title: { is_not_empty: true } },
               { checkbox: { equals: true }, property: 'public' },
-              { property: 'slug', rich_text: { is_not_empty: true } },
+              { property: 'slug', rich_text: { does_not_contain: '/' } },
+              { property: 'category', select: { is_not_empty: true } },
             ],
           },
           sorts: [{ direction: 'ascending', timestamp: 'created_time' }],
