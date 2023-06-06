@@ -34,7 +34,7 @@ const processPost = (result: any): Post => {
     lastEditedTime: dayjs(lastEditedTime),
     slug: slug.richText[0].plainText,
     tags: tags.multiSelect.map((tag: { name: string }) => tag.name),
-    title: title.title[0].plainText,
+    title: title.title[0]?.plainText ?? '',
   };
 };
 
@@ -69,8 +69,11 @@ export const getPost = cache(
     if (!response) {
       notFound();
     }
-    const blocks = await n2m.pageToMarkdown(response.id);
-    const rawPost = n2m.toMarkdownString(blocks);
+    const mdBlocks = await n2m.pageToMarkdown(response.id);
+    const mdString = n2m.toMarkdownString(mdBlocks);
+    if (!mdString.parent) {
+      throw new Error('Empty content');
+    }
     const { data, value } = await remark()
       .use(remarkGfm)
       .use(remarkRehype, { allowDangerousHtml: true })
@@ -81,7 +84,7 @@ export const getPost = cache(
       .use(rehypeA11y)
       .use(rehypeImage)
       .use(rehypeStringify)
-      .process(rawPost.trim());
+      .process(mdString.parent.trim());
     return {
       content: value.toString(),
       toc: data.toc as TOC[],
