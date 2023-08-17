@@ -21,10 +21,15 @@ function TableOfContents({ toc }: Props) {
         {toc.map(({ id, tagName, text }) => (
           <li
             key={id}
-            className="py-1"
+            className="w-full py-1"
             style={{ paddingLeft: `${PADDING_LEFT[tagName]}px` }}
           >
-            <a href={`#${id}`}>{text}</a>
+            <a
+              className="block truncate"
+              href={`#${id}`}
+            >
+              {text}
+            </a>
           </li>
         ))}
       </ul>
