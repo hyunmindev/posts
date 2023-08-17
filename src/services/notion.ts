@@ -11,7 +11,6 @@ import { remark } from 'remark';
 import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 
-import { MockData, withMock } from '@/configs/mock';
 import { n2m, notion } from '@/configs/notion';
 import { POST_NOTION_DATABASE_ID } from '@/constants';
 import { Database, Post, TOC } from '@/types/notion';
@@ -39,79 +38,72 @@ const processPost = (result: any): Post => {
 };
 
 export const getPosts = cache(
-  withMock(
-    MockData.POSTS,
-    async (): Promise<Post[]> =>
-      (
-        await notion.databases.query({
-          database_id: POST_NOTION_DATABASE_ID,
-          filter: {
-            and: [
-              { property: 'title', title: { is_not_empty: true } },
-              { checkbox: { equals: true }, property: 'public' },
-              { property: 'slug', rich_text: { does_not_contain: '/' } },
-              { property: 'category', select: { is_not_empty: true } },
-            ],
-          },
-          sorts: [{ direction: 'ascending', timestamp: 'created_time' }],
-        })
-      ).results.map(processPost),
-  ),
+  async (): Promise<Post[]> =>
+    (
+      await notion.databases.query({
+        database_id: POST_NOTION_DATABASE_ID,
+        filter: {
+          and: [
+            { property: 'title', title: { is_not_empty: true } },
+            { checkbox: { equals: true }, property: 'public' },
+            { property: 'slug', rich_text: { does_not_contain: '/' } },
+            { property: 'category', select: { is_not_empty: true } },
+          ],
+        },
+        sorts: [{ direction: 'ascending', timestamp: 'created_time' }],
+      })
+    ).results.map(processPost),
 );
 
-export const getPost = cache(
-  withMock(MockData.POST, async (slug: string): Promise<Post> => {
-    const { results } = await notion.databases.query({
-      database_id: POST_NOTION_DATABASE_ID,
-      filter: { and: [{ property: 'slug', rich_text: { equals: slug } }] },
-    });
-    const [response] = results;
-    if (!response) {
-      notFound();
-    }
-    const mdBlocks = await n2m.pageToMarkdown(response.id);
-    const mdString = n2m.toMarkdownString(mdBlocks);
-    if (!mdString.parent) {
-      throw new Error('Empty content');
-    }
-    const { data, value } = await remark()
-      .use(remarkGfm)
-      .use(remarkRehype, { allowDangerousHtml: true })
-      .use(rehypeBreakLine)
-      .use(rehypeHighlight)
-      .use(rehypeRaw)
-      .use(rehypeTOC)
-      .use(rehypeA11y)
-      .use(rehypeImage)
-      .use(rehypeStringify)
-      .process(mdString.parent.trim());
-    return {
-      content: value.toString(),
-      toc: data.toc as TOC[],
-      ...processPost(response),
-    };
-  }),
-);
+export const getPost = cache(async (slug: string): Promise<Post> => {
+  const { results } = await notion.databases.query({
+    database_id: POST_NOTION_DATABASE_ID,
+    filter: { and: [{ property: 'slug', rich_text: { equals: slug } }] },
+  });
+  const [response] = results;
+  if (!response) {
+    notFound();
+  }
+  const mdBlocks = await n2m.pageToMarkdown(response.id);
+  const mdString = n2m.toMarkdownString(mdBlocks);
+  if (!mdString.parent) {
+    throw new Error('Empty content');
+  }
+  const { data, value } = await remark()
+    .use(remarkGfm)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeBreakLine)
+    .use(rehypeHighlight)
+    .use(rehypeRaw)
+    .use(rehypeTOC)
+    .use(rehypeA11y)
+    .use(rehypeImage)
+    .use(rehypeStringify)
+    .process(mdString.parent.trim());
+  return {
+    content: value.toString(),
+    toc: data.toc as TOC[],
+    ...processPost(response),
+  };
+});
 
-export const getDatabase = cache(
-  withMock(MockData.DATABASE, async (): Promise<Database> => {
-    const { properties } = await notion.databases.retrieve({
-      database_id: POST_NOTION_DATABASE_ID,
-    });
-    const categories: { [key: string]: { color: string } } =
+export const getDatabase = cache(async (): Promise<Database> => {
+  const { properties } = await notion.databases.retrieve({
+    database_id: POST_NOTION_DATABASE_ID,
+  });
+  const categories: { [key: string]: { color: string } } =
+    // @ts-ignore
+    properties.category.select.options.reduce(
       // @ts-ignore
-      properties.category.select.options.reduce(
-        // @ts-ignore
-        (acc, { color, name }) => ({ ...acc, [name]: { color } }),
-        {},
-      );
-    const tags: { [key: string]: { color: string } } =
+      (acc, { color, name }) => ({ ...acc, [name]: { color } }),
+      {},
+    );
+  const tags: { [key: string]: { color: string } } =
+    // @ts-ignore
+    properties.tags.multi_select.options.reduce(
       // @ts-ignore
-      properties.tags.multi_select.options.reduce(
-        // @ts-ignore
-        (acc, { color, name }) => ({ ...acc, [name]: { color } }),
-        {},
-      );
-    return { categories, tags };
-  }),
-);
+      (acc, { color, name }) => ({ ...acc, [name]: { color } }),
+      {},
+    );
+  return { categories, tags };
+});
