@@ -46,6 +46,7 @@ export const getPosts = cache(
           and: [
             { property: 'title', title: { is_not_empty: true } },
             { checkbox: { equals: true }, property: 'public' },
+            { property: 'slug', rich_text: { is_not_empty: true } },
             { property: 'slug', rich_text: { does_not_contain: '/' } },
             { property: 'category', select: { is_not_empty: true } },
           ],
