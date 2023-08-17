@@ -89,6 +89,6 @@ export async function GET(request: NextRequest) {
       ],
       height: 630,
       width: 1200,
-    }
+    },
   );
 }

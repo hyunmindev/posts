@@ -18,6 +18,7 @@
     "@giscus/react": "^2.3.0",
     "@notionhq/client": "^2.2.11",
     "@supabase/supabase-js": "^2.32.0",
+    "@types/hast": "^3.0.0",
     "@vercel/analytics": "^1.0.2",
     "@vercel/og": "^0.5.11",
     "camelcase-keys": "^9.0.0",

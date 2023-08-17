@@ -23,7 +23,7 @@ import { rehypeTOC } from '@/utils/rehypeTOC';
 const processPost = (result: any): Post => {
   const { cover, createdTime, lastEditedTime, properties } = camelcaseKeys(
     result,
-    { deep: true }
+    { deep: true },
   );
   const { category, description, slug, tags, title } = properties;
   return {
@@ -55,8 +55,8 @@ export const getPosts = cache(
           },
           sorts: [{ direction: 'ascending', timestamp: 'created_time' }],
         })
-      ).results.map(processPost)
-  )
+      ).results.map(processPost),
+  ),
 );
 
 export const getPost = cache(
@@ -90,7 +90,7 @@ export const getPost = cache(
       toc: data.toc as TOC[],
       ...processPost(response),
     };
-  })
+  }),
 );
 
 export const getDatabase = cache(
@@ -103,15 +103,15 @@ export const getDatabase = cache(
       properties.category.select.options.reduce(
         // @ts-ignore
         (acc, { color, name }) => ({ ...acc, [name]: { color } }),
-        {}
+        {},
       );
     const tags: { [key: string]: { color: string } } =
       // @ts-ignore
       properties.tags.multi_select.options.reduce(
         // @ts-ignore
         (acc, { color, name }) => ({ ...acc, [name]: { color } }),
-        {}
+        {},
       );
     return { categories, tags };
-  })
+  }),
 );

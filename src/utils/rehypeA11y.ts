@@ -5,7 +5,7 @@ import type { Element, Literal } from 'hast';
 const hasCheckboxInChildren = (children: Element[]) =>
   children.some(
     (child) =>
-      child.tagName === 'input' && child.properties?.type === 'checkbox'
+      child.tagName === 'input' && child.properties?.type === 'checkbox',
   );
 
 const improveCheckboxes = (children: Element[]) =>

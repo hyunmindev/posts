@@ -4,7 +4,7 @@ import type { Element, Literal } from 'hast';
 
 const removeBreakLine = (root: Element) => {
   root.children = root.children.filter(
-    (child) => (child as Literal).value !== '\n'
+    (child) => (child as Literal).value !== '\n',
   );
   (root.children as Element[]).forEach((child) => {
     if (child.children) {

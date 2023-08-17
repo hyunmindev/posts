@@ -18,7 +18,7 @@ const mockData = {
 
 export const withMock = <T, Args extends any[]>(
   key: MockData,
-  fn: (...args: Args) => Promise<T>
+  fn: (...args: Args) => Promise<T>,
 ): ((...args: Args) => Promise<T>) => {
   if (process.env.MOCK === 'true') {
     return async () => mockData[key] as T;

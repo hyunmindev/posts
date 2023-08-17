@@ -18,7 +18,7 @@ export const useHash = (): [string, (hash: string) => void] => {
         window.location.hash = `#${newHash}`;
       }
     },
-    [hash]
+    [hash],
   );
 
   return [hash, updateHash];

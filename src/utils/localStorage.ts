@@ -14,7 +14,7 @@ export const getIsViewed = (slug: string) => getViewCount(slug) > 0;
 export const incrementViewCount = (slug: string) =>
   localStorage.setItem(
     KEY.VIEW_MAP,
-    JSON.stringify({ ...getViewMap(), [slug]: getViewCount(slug) + 1 })
+    JSON.stringify({ ...getViewMap(), [slug]: getViewCount(slug) + 1 }),
   );
 
 export const getUserID = () => {

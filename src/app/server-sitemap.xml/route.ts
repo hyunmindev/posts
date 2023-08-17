@@ -10,6 +10,6 @@ export async function GET() {
       lastmod: lastEditedTime.toISOString(),
       loc: `${BLOG_URL}/${slug}`,
       priority: 1,
-    }))
+    })),
   );
 }

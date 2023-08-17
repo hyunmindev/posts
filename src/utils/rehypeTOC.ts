@@ -1,7 +1,6 @@
 import 'server-only';
 
 import type { Element, RootContent, Text } from 'hast';
-import type { VFile } from 'vfile';
 
 const titleTags = ['h2', 'h3', 'h4'];
 
@@ -9,10 +8,10 @@ const validateTOC = (children: RootContent[]) => {
   const titles = children
     .filter((child) => titleTags.includes((child as Element).tagName))
     .map((child) =>
-      ((child as Element).children[0] as Text).value.toLowerCase()
+      ((child as Element).children[0] as Text).value.toLowerCase(),
     );
   const uniqueTitles = titles.filter(
-    (title, index) => titles.indexOf(title) === index
+    (title, index) => titles.indexOf(title) === index,
   );
   if (titles.length !== uniqueTitles.length) {
     throw new Error('Duplicate title');
@@ -43,7 +42,10 @@ const processTOC = (children: RootContent[]) =>
 
 export const rehypeTOC =
   () =>
-  ({ children }: { children: Element[] }, { data }: VFile) => {
+  (
+    { children }: { children: Element[] },
+    { data }: { data: { toc: {}[] } },
+  ) => {
     validateTOC(children);
     attachID(children);
     data.toc = processTOC(children);

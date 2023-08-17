@@ -29,7 +29,7 @@ function TOCPointer({ toc }: Props) {
             .concat(visibleEntries),
         ]);
       },
-      { rootMargin: '-10% -10%', threshold: [0, 0.5, 1] }
+      { rootMargin: '-10% -10%', threshold: [0, 0.5, 1] },
     );
     const sections = document.querySelectorAll('h2, h3, h4');
     sections.forEach((section) => observer.observe(section));
@@ -74,7 +74,7 @@ function TOCPointer({ toc }: Props) {
     }
     setTimeout(
       () => setCurrentSectionIndex(toc.findIndex(({ id }) => hash === id)),
-      50
+      50,
     );
   });
 
