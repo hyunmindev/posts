@@ -10,6 +10,7 @@ export const BREAKPOINT = {
 
 export const CATEGORY_COLOR: { [key: string]: string } = {
   blue: '#5499d7',
+  brown: '#a67d3d',
   green: '#6abf69',
   orange: '#e87851',
   pink: '#f35b70',
